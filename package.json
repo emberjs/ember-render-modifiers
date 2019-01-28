@@ -37,10 +37,15 @@
     "ember-resolver": "^5.0.1",
     "ember-source": "~3.7.0",
     "ember-source-channel-url": "^1.1.0",
+    "ember-template-lint": "^1.1.0",
     "ember-try": "^1.0.0",
+    "eslint": "^5.12.1",
+    "eslint-config-prettier": "^4.0.0",
     "eslint-plugin-ember": "^5.2.0",
     "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
     "loader.js": "^4.7.0",
+    "prettier": "^1.16.1",
     "qunit-dom": "^0.8.0"
   },
   "engines": {
