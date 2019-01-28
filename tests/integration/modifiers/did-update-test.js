@@ -13,7 +13,7 @@ module('Integration | Modifier | did-update', function(hooks) {
       assert.equal(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
 
-      assert.deepEqual(named, {}, 'named args match');
+      assert.namedArgsEqual(named, {}, 'named args match');
       assert.deepEqual(positional, ['update'], 'positional args match');
     };
 

@@ -23,7 +23,7 @@ module('Integration | Modifier | did-insert', function(hooks) {
       assert.equal(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
 
-      assert.deepEqual(named, { some: 'hash-value' }, 'named args match');
+      assert.namedArgsEqual(named, { some: 'hash-value' }, 'named args match');
       assert.deepEqual(positional, ['some-positional-value'], 'positional args match');
     };
 
@@ -39,7 +39,7 @@ module('Integration | Modifier | did-insert', function(hooks) {
       assert.equal(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
 
-      assert.deepEqual(named, {}, 'named args match');
+      assert.namedArgsEqual(named, {}, 'named args match');
       assert.deepEqual(positional, ['initial'], 'positional args match');
     };
 
