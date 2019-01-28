@@ -2,6 +2,7 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
+import Component from '@ember/component';
 
 module('Integration | Modifier | did-insert', function(hooks) {
   setupRenderingTest(hooks);
@@ -48,5 +49,31 @@ module('Integration | Modifier | did-insert', function(hooks) {
       hbs`<div data-foo="some-thing" {{did-insert this.someMethod this.firstArg}}></div>`
     );
     this.set('firstArg', 'updated');
+  });
+
+  test('adding class on insert (RFC example)', async function(assert) {
+    this.owner.register(
+      'component:sometimes-fades-in',
+      Component.extend({
+        fadeIn(element) {
+          element.classList.add('fade-in');
+        },
+      })
+    );
+
+    this.owner.register(
+      'template:components/sometimes-fades-in',
+      hbs`
+        {{#if shouldShow}}
+          <div {{did-insert this.fadeIn}} class="alert">
+            {{yield}}
+          </div>
+        {{/if}}
+      `
+    );
+
+    await render(hbs`{{sometimes-fades-in shouldShow=true}}`);
+
+    assert.dom('.alert').hasClass('fade-in');
   });
 });
