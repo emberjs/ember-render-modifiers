@@ -1,13 +1,14 @@
 {
   "name": "@ember/render-modifiers",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Implements did-insert / did-update / will-destry modifiers for emberjs/rfcs#415",
   "keywords": [
     "ember-addon"
   ],
-  "repository": "",
+  "repository": "git@github.com:emberjs/ember-render-modifiers.git",
   "license": "MIT",
-  "author": "",
+  "author": "Robert Jackson <me@rwjblue>",
+  "main": "index.js",
   "directories": {
     "doc": "doc",
     "test": "tests"
