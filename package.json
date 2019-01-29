@@ -1,6 +1,6 @@
 {
   "name": "@ember/render-modifiers",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Implements did-insert / did-update / will-destry modifiers for emberjs/rfcs#415",
   "keywords": [
     "ember-addon"
