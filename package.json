@@ -15,6 +15,7 @@
   },
   "scripts": {
     "build": "ember build",
+    "changelog": "lerna-changelog",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
     "start": "ember serve",
@@ -46,6 +47,7 @@
     "eslint-plugin-ember": "^6.1.0",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-prettier": "^3.0.1",
+    "lerna-changelog": "^0.8.2",
     "loader.js": "^4.7.0",
     "prettier": "^1.16.1",
     "qunit-dom": "^0.8.0"
