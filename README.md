@@ -73,7 +73,7 @@ been appended.
 Before:
 
 ```hbs
-{{#if shouldShow}}
+{{#if this.shouldShow}}
   <div class="alert">
     {{yield}}
   </div>
@@ -94,7 +94,7 @@ export default Component.extend({
 After:
 
 ```hbs
-{{#if shouldShow}}
+{{#if this.shouldShow}}
   <div {{did-insert this.fadeIn}} class="alert">
     {{yield}}
   </div>
