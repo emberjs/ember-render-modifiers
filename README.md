@@ -57,7 +57,7 @@ After:
 ```
 ```js
 export default class Component.extend({
-  setScrollPosition(element, scrollPosition) {
+  setScrollPosition(element, [scrollPosition]) {
     element.scrollTop = scrollPosition;
   }
 })
@@ -131,7 +131,7 @@ this:
 ```js
 export default Component.extend({
   resizeArea(element) {
-    element.css.height = `${element.scrollHeight}px`;
+    element.style.height = `${element.scrollHeight}px`;
   }
 });
 ```
