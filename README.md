@@ -57,7 +57,7 @@ After:
 ```
 ```js
 export default class Component.extend({
-  setScrollPosition(element, scrollPosition) {
+  setScrollPosition(element, [scrollPosition]) {
     element.scrollTop = scrollPosition;
   }
 })
