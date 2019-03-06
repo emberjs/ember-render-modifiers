@@ -131,7 +131,7 @@ this:
 ```js
 export default Component.extend({
   resizeArea(element) {
-    element.css.height = `${element.scrollHeight}px`;
+    element.style.height = `${element.scrollHeight}px`;
   }
 });
 ```
