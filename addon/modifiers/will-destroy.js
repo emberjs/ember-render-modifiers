@@ -19,12 +19,20 @@ import Ember from 'ember';
   ```
 
   By default, the executed function will be unbound. If you would like to access
-  the component context in your function, use the `action` helper as follows:
+  the component context in your function, use the `action` decorator as follows:
 
-    ```handlebars
-  <div {{will-destroy (action this.teardownPlugin)}}>
+  ```handlebars
+  <div {{will-destroy this.teardownPlugin}}>
     {{yield}}
   </div>
+  ```
+
+  ```js
+  export default Component.extend({
+    teardownPlugin: action(function(element) {
+      // the `this` context will be the component instance
+    })
+  });
   ```
 
   @method will-destroy

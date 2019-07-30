@@ -39,10 +39,18 @@ import Ember from 'ember';
   ```
 
   By default, the executed function will be unbound. If you would like to access
-  the component context in your function, use the `action` helper as follows:
+  the component context in your function, use the `action` decorator as follows:
 
   ```handlebars
-  <div {{did-update (action this.someFunction) @someArg} />
+  <div {{did-update this.someFunction @someArg} />
+  ```
+
+  ```js
+  export default Component.extend({
+    someFunction: action(function(element, [someArg]) {
+      // the `this` context will be the component instance
+    })
+  });
   ```
 
   @method did-update

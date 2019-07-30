@@ -22,22 +22,22 @@ import Ember from 'ember';
   ```
 
   By default, the executed function will be unbound. If you would like to access
-  the component context in your function, use the `action` helper as follows:
+  the component context in your function, use the `action` decorator as follows:
 
   ```handlebars
-  <div {{did-insert (action this.incrementCount)}}>first</div>
-  <div {{did-insert (action this.incrementCount)}}>second</div>
+  <div {{did-insert this.incrementCount}}>first</div>
+  <div {{did-insert this.incrementCount}}>second</div>
 
   <p>{{this.count}} elements were rendered</p>
   ```
 
-    ```js
+  ```js
   export default Component.extend({
-    @tracked count = 0;
+    count: tracked({ value: 0 }),
 
-    incrementCount() {
+    incrementCount: action(function() {
       this.count++;
-    }
+    })
   });
   ```
 
