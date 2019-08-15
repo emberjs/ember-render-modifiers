@@ -1,0 +1,10 @@
+<div
+  {{did-update (action this.update) this.name}}
+  {{will-destroy (action this.clear)}}
+>
+  {{this.name}}
+</div>
+
+{{#link-to "index"}}
+  index
+{{/link-to}}
