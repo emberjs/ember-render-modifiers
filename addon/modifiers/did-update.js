@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { setModifierManager, capabilities } from '../modifier';
 
 /**
   The `{{did-update}}` element modifier is activated when any of its arguments
@@ -56,8 +56,10 @@ import Ember from 'ember';
   @method did-update
   @public
 */
-export default Ember._setModifierManager(
+export default setModifierManager(
   () => ({
+    capabilities: capabilities('3.13'),
+
     createModifier() {
       return { element: null };
     },

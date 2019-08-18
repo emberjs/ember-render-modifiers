@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { setModifierManager, capabilities } from '../modifier';
 
 /**
   The `{{did-insert}}` element modifier is activated when an element is
@@ -44,8 +44,10 @@ import Ember from 'ember';
   @method did-insert
   @public
 */
-export default Ember._setModifierManager(
+export default setModifierManager(
   () => ({
+    capabilities: capabilities('3.13'),
+
     createModifier() {},
 
     installModifier(_state, element, args) {
