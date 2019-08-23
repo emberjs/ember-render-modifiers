@@ -3377,10 +3377,10 @@ ember-cli@~3.7.1:
     watch-detector "^0.1.0"
     yam "^1.0.0"
 
-ember-compatibility-helpers@^1.2.0-beta.1:
-  version "1.2.0-beta.1"
-  resolved "https://registry.yarnpkg.com/ember-compatibility-helpers/-/ember-compatibility-helpers-1.2.0-beta.1.tgz#cd5898734f398f977707cbf8d448689377449180"
-  integrity sha512-ewKxBP0DIcbuMyGR8P+ned3H6vgCI5+2t+5MOwcaIFxRYUx6Bm0Dqk6Y8UWzwVgkxlZspC34k8QE/QLlSI7oiA==
+ember-compatibility-helpers@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ember-compatibility-helpers/-/ember-compatibility-helpers-1.2.0.tgz#feee16c5e9ef1b1f1e53903b241740ad4b01097e"
+  integrity sha512-pUW4MzJdcaQtwGsErYmitFRs0rlCYBAnunVzlFFUBr4xhjlCjgHJo0b53gFnhTgenNM3d3/NqLarzRhDTjXRTg==
   dependencies:
     babel-plugin-debug-macros "^0.2.0"
     ember-cli-version-checker "^2.1.1"
@@ -3408,14 +3408,14 @@ ember-maybe-import-regenerator@^0.1.6:
     ember-cli-babel "^6.0.0-beta.4"
     regenerator-runtime "^0.9.5"
 
-ember-modifier-manager-polyfill@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/ember-modifier-manager-polyfill/-/ember-modifier-manager-polyfill-1.0.1.tgz#98e7dbda0a8e16137057ef23cd8e23bfb38d15cf"
-  integrity sha512-mOur7Kkh84FpCwvYnANQ5YD4jq2YcFW6zQUhJC5VW90etvtsSj7lVXWL5CZrxs0KskPCNAm0+b7LAtr0T6k9sA==
+ember-modifier-manager-polyfill@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/ember-modifier-manager-polyfill/-/ember-modifier-manager-polyfill-1.1.0.tgz#06397b05a3f9a5868b05fca11fe10c7f6b78a328"
+  integrity sha512-fCEumUwdAnwk8rGSEww1/NkIHbmLOS8kRmEZyO9mxeIy+BtdYqdSIMrn3tSnt9QeacWQm2zdR8KXBqc2bc1G6A==
   dependencies:
-    ember-cli-babel "^7.4.0"
+    ember-cli-babel "^7.10.0"
     ember-cli-version-checker "^2.1.2"
-    ember-compatibility-helpers "^1.2.0-beta.1"
+    ember-compatibility-helpers "^1.2.0"
 
 ember-qunit@^4.2.0:
   version "4.2.0"

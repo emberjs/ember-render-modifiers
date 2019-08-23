@@ -1,4 +1,4 @@
-import { setModifierManager, capabilities } from '../modifier';
+import { setModifierManager, capabilities } from '@ember/modifier';
 
 /**
   The `{{did-insert}}` element modifier is activated when an element is

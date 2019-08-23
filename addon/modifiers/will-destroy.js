@@ -1,4 +1,4 @@
-import { setModifierManager, capabilities } from '../modifier';
+import { setModifierManager, capabilities } from '@ember/modifier';
 
 /**
   The `{{will-destroy}}` element modifier is activated immediately before the element
