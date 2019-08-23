@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { setModifierManager, capabilities } from '@ember/modifier';
 
 /**
   The `{{will-destroy}}` element modifier is activated immediately before the element
@@ -38,8 +38,10 @@ import Ember from 'ember';
   @method will-destroy
   @public
 */
-export default Ember._setModifierManager(
+export default setModifierManager(
   () => ({
+    capabilities: capabilities('3.13'),
+
     createModifier() {
       return { element: null };
     },
