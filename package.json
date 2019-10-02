@@ -74,5 +74,8 @@
     "github": {
       "release": true
     }
+  },
+  "resolutions": {
+    "**/engine.io": "~3.3.0"
   }
 }
