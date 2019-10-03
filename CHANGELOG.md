@@ -1,3 +1,11 @@
+## v1.0.2 (2019-10-03)
+
+#### :bug: Bug Fix
+* [#16](https://github.com/emberjs/ember-render-modifiers/pull/16) Disable modifier auto-tracking. ([@rwjblue](https://github.com/rwjblue))
+
+#### Committers: 1
+- Robert Jackson ([@rwjblue](https://github.com/rwjblue))
+
 ## v1.0.1 (2019-08-23)
 
 #### :bug: Bug Fix
