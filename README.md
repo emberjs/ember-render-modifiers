@@ -4,6 +4,26 @@
 Provides element modifiers that can be used to hook into specific portions of
 the rendering lifecycle.
 
+### When to use these modifiers (and when *not* to use them)
+
+The modifiers provided in this package are ideal for quickly migrating away from 
+classic Ember components to Glimmer components, because they largely allow you to 
+use the same lifecycle hook methods you've already written while attaching them to 
+these modifiers. For example, a `didInsertElement` hook could be called by 
+`{{did-insert this.didInsertElement}}` to ease your migration process.
+
+However, we strongly encourage you to take this opportunity to rethink your 
+functionality rather than use these modifiers as a crutch. In many cases, classic 
+lifecycle hooks like `didInsertElement` can be rewritten as custom modifiers that 
+internalize functionality manipulating or generating state from a DOM element. 
+Other times, you may find that a modifier is not the right fit for that logic at all, 
+in which case it's worth revisiting the design to find a better pattern.
+
+Either way, we recommend using these modifiers with caution. They are very useful for 
+quickly bridging the gap between classic components and Glimmer components, but they 
+are still generally an anti-pattern. We recommend considering a custom modifier in 
+most use-cases where you might want to reach for this package.
+
 
 Compatibility
 ------------------------------------------------------------------------------
