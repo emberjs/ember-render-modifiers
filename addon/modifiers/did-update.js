@@ -1,3 +1,4 @@
+import { gte } from 'ember-compatibility-helpers';
 import { setModifierManager, capabilities } from '@ember/modifier';
 
 /**
@@ -58,14 +59,30 @@ import { setModifierManager, capabilities } from '@ember/modifier';
 */
 export default setModifierManager(
   () => ({
-    capabilities: capabilities('3.13', { disableAutoTracking: true }),
+    capabilities: capabilities(gte('3.22.0') ? '3.22' : '3.13', {
+      disableAutoTracking: gte('3.22.0') ? false : true,
+    }),
 
     createModifier() {
       return { element: null };
     },
-    installModifier(state, element) {
+
+    installModifier(state, element, args) {
       // save element into state bucket
       state.element = element;
+
+      if (gte('3.22.0')) {
+        // consume all args
+        for (let i = 0; i < args.positional.length; i++) {
+          // "noop" / consume the arg
+          args.positional[i];
+        }
+
+        for (let key of Object.keys(args.named)) {
+          // "noop" / consume the arg
+          args.named[key];
+        }
+      }
     },
 
     updateModifier({ element }, args) {
