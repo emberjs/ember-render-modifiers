@@ -7,8 +7,8 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: {
-      legacyDecorators: true
-    }
+      legacyDecorators: true,
+    },
   },
   plugins: ['ember', 'prettier'],
   extends: ['eslint:recommended', 'plugin:ember/recommended', 'prettier'],
@@ -34,13 +34,13 @@ module.exports = {
       ],
       excludedFiles: ['addon/**', 'addon-test-support/**', 'app/**', 'tests/dummy/app/**'],
       parserOptions: {
-        sourceType: 'script'
+        sourceType: 'script',
       },
       env: {
         browser: false,
         node: true,
       },
-      extends: ['plugin:node/recommended']
-    }
-  ]
+      extends: ['plugin:node/recommended'],
+    },
+  ],
 };
