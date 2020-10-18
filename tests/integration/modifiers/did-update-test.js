@@ -17,9 +17,8 @@ module('Integration | Modifier | did-update', function(hooks) {
           @tracked boundValue = 'initial';
         }
 
-
         this.setProperties({
-          ctx: new Context() ,
+          ctx: new Context(),
           someMethod(element, positional, named) {
             assert.equal(element.tagName, 'DIV', 'correct element tagName');
             assert.dom(element).hasAttribute('data-foo', 'some-thing');
@@ -29,7 +28,6 @@ module('Integration | Modifier | did-update', function(hooks) {
             assert.equal(positional[0], 'update', 'positional args match');
           },
         });
-
 
         await render(
           hbs`
