@@ -50,10 +50,8 @@ export default setModifierManager(
 
     createModifier() {},
 
-    installModifier(_state, element, args) {
-      let [fn, ...positional] = args.positional;
-
-      fn(element, positional, args.named);
+    installModifier(_state, element, { positional: [fn, ...args], named }) {
+      fn(element, args, named);
     },
 
     updateModifier() {},
