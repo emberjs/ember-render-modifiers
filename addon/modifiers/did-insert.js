@@ -51,12 +51,12 @@ export default setModifierManager(
     createModifier() {},
 
     installModifier(
-    _state,
-     element,
-     {
-      positional: [fn, ...args],
-      named
-    }
+      _state,
+      element,
+      {
+        positional: [fn, ...args],
+        named
+      }
     ) {
       fn(element, args, named);
     },
