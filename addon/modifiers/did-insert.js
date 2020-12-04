@@ -55,7 +55,7 @@ export default setModifierManager(
       element,
       {
         positional: [fn, ...args],
-        named
+        named,
       }
     ) {
       fn(element, args, named);
