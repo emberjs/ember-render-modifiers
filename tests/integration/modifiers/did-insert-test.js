@@ -33,6 +33,18 @@ module('Integration | Modifier | did-insert', function(hooks) {
     );
   });
 
+  test('it works with fn helper', async function(assert) {
+    assert.expect(3);
+
+    this.someMethod = (mayBeFoo, element, positional) => {
+      assert.equal(mayBeFoo, 'foo', 'closure is working as expected');
+      assert.equal(element.tagName, 'DIV', 'correct element tagName');
+      assert.equal(positional.length, 0, 'no positional arguments should exists');
+    };
+
+    await render(hbs`<div {{did-insert (fn this.someMethod "foo")}}></div>`);
+  });
+
   test('it is not invoked again when arguments change', async function(assert) {
     assert.expect(4);
 
