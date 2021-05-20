@@ -1,4 +1,5 @@
 import { setModifierManager, capabilities } from '@ember/modifier';
+import { gte } from 'ember-compatibility-helpers';
 
 /**
   The `{{did-insert}}` element modifier is activated when an element is
@@ -46,7 +47,7 @@ import { setModifierManager, capabilities } from '@ember/modifier';
 */
 export default setModifierManager(
   () => ({
-    capabilities: capabilities('3.22', { disableAutoTracking: true }),
+    capabilities: capabilities(gte('3.22.0') ? '3.22' : '3.13', { disableAutoTracking: true }),
 
     createModifier() {},
 
