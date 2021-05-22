@@ -64,9 +64,18 @@ export default setModifierManager(
     createModifier() {
       return { element: null };
     },
-    installModifier(state, element) {
+    installModifier(state, element, args) {
       // save element into state bucket
       state.element = element;
+      if (gte('3.22.0')) {
+        // consume all args
+        for (let i = 0; i < args.positional.length; i++) {
+          args.positional[i]; // "noop" / consume the arg
+        }
+        for (let key of Object.keys(args.named)) {
+          args.named[key]; // "noop" / consume the arg
+        }
+      }
     },
 
     updateModifier({ element }, args) {
