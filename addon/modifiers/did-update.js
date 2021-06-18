@@ -1,4 +1,5 @@
 import { setModifierManager, capabilities } from '@ember/modifier';
+import { gte } from 'ember-compatibility-helpers';
 
 /**
   The `{{did-update}}` element modifier is activated when any of its arguments
@@ -58,19 +59,38 @@ import { setModifierManager, capabilities } from '@ember/modifier';
 */
 export default setModifierManager(
   () => ({
-    capabilities: capabilities('3.13', { disableAutoTracking: true }),
+    capabilities: gte('3.22.0')
+      ? capabilities('3.22', { disableAutoTracking: false })
+      : capabilities('3.13', { disableAutoTracking: true }),
 
     createModifier() {
       return { element: null };
     },
-    installModifier(state, element) {
+    installModifier(state, element, args) {
       // save element into state bucket
       state.element = element;
+      if (gte('3.22.0')) {
+        // consume all args
+        for (let i = 0; i < args.positional.length; i++) {
+          args.positional[i]; // "noop" / consume the arg
+        }
+        for (let key of Object.keys(args.named)) {
+          args.named[key]; // "noop" / consume the arg
+        }
+      }
     },
 
     updateModifier({ element }, args) {
+      if (gte('3.22.0')) {
+        // consume all args
+        for (let i = 0; i < args.positional.length; i++) {
+          args.positional[i]; // "noop" / consume the arg
+        }
+        for (let key of Object.keys(args.named)) {
+          args.named[key]; // "noop" / consume the arg
+        }
+      }
       let [fn, ...positional] = args.positional;
-
       fn(element, positional, args.named);
     },
 
