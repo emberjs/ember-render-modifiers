@@ -59,7 +59,9 @@ import { gte } from 'ember-compatibility-helpers';
 */
 export default setModifierManager(
   () => ({
-    capabilities: gte('3.22.0') ? capabilities('3.22', { disableAutoTracking: false }) :  capabilities('3.13', { disableAutoTracking: true }),
+    capabilities: gte('3.22.0')
+      ? capabilities('3.22', { disableAutoTracking: false })
+      : capabilities('3.13', { disableAutoTracking: true }),
 
     createModifier() {
       return { element: null };
