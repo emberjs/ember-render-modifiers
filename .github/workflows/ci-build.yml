@@ -20,13 +20,13 @@ jobs:
         with:
           node-version: 10.x
       - name: install dependencies
-        run: yarn install
+        run: npm install
       - name: lint:js
-        run: yarn lint:js
+        run: npm run lint:js
       - name: lint:hbs
-        run: yarn lint:hbs
+        run: npm run lint:hbs
       - name: test
-        run: yarn test
+        run: npm run test
 
   try-scenarios:
     name: ${{ matrix.ember-try-scenario }}

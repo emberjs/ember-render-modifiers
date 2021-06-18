@@ -9,7 +9,6 @@ module.exports = function() {
     getChannelURL('canary'),
   ]).then(urls => {
     return {
-      useYarn: true,
       scenarios: [
         {
           name: 'ember-lts-2.18',
@@ -95,7 +94,7 @@ module.exports = function() {
             },
           },
         },
-        // The default `.travis.yml` runs this scenario via `yarn test`,
+        // The default `.travis.yml` runs this scenario via `npm run test`,
         // not via `ember try`. It's still included here so that running
         // `ember try:each` manually or from a customized CI config will run it
         // along with all the other scenarios.
