@@ -969,6 +969,11 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
+"@types/minimatch@^3.0.3":
+  version "3.0.4"
+  resolved "https://artifacts.apple.com/api/npm/npm-private/@types/minimatch/-/minimatch-3.0.4.tgz#f0ec25dbf2f0e4b18647313ac031134ca5b24b21"
+  integrity sha1-8Owl2/Lw5LGGRzE6wDETTKWySyE=
+
 "@types/node@*":
   version "10.12.19"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.19.tgz#ca1018c26be01f07e66ac7fefbeb6407e4490c61"
@@ -3177,6 +3182,13 @@ debug@^3.1.0:
   dependencies:
     ms "^2.1.1"
 
+debug@^4.1.1:
+  version "4.3.1"
+  resolved "https://artifacts.apple.com/api/npm/npm-private/debug/-/debug-4.3.1.tgz#f0d229c505e0c6d8c49ac553d1b13dc183f6b2ee"
+  integrity sha1-8NIpxQXgxtjEmsVT0bE9wYP2su4=
+  dependencies:
+    ms "2.1.2"
+
 decamelize@^1.1.1, decamelize@^1.1.2, decamelize@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
@@ -3775,12 +3787,19 @@ ember-router-generator@^1.2.3:
   dependencies:
     recast "^0.11.3"
 
-ember-source-channel-url@^1.0.1, ember-source-channel-url@^1.1.0:
+ember-source-channel-url@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ember-source-channel-url/-/ember-source-channel-url-1.1.0.tgz#73de5cc6ebc25b2120e932ec1d8f82677bfaf6ef"
   integrity sha512-y1RVXmyqrdX6zq9ZejpPt7ohKNGuLMBEKaOUyxFWcYAM5gvLuo6xFerwNmXEBbu4e3//GaoasjodXi6Cl+ddUQ==
   dependencies:
     got "^8.0.1"
+
+ember-source-channel-url@^3.0.0:
+  version "3.0.0"
+  resolved "https://artifacts.apple.com/api/npm/npm-private/ember-source-channel-url/-/ember-source-channel-url-3.0.0.tgz#bcd5be72c63fa0b8c390b3121783b462063e2a1b"
+  integrity sha1-vNW+csY/oLjDkLMSF4O0YgY+Khs=
+  dependencies:
+    node-fetch "^2.6.0"
 
 ember-source@~3.7.0:
   version "3.7.2"
@@ -3826,24 +3845,24 @@ ember-try-config@^3.0.0:
     rsvp "^4.8.1"
     semver "^5.5.0"
 
-ember-try@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ember-try/-/ember-try-1.1.0.tgz#194d5843a79b5a9fc0e4c07445ebc18c08a91e78"
-  integrity sha512-NL1rKPz2LuyVEqwoNV+SQD4c2w1/A0rrdeT6jqTYqlt/P7y3+SWcsxyReBnImebaIu7Drtz6p9yiAsrJq5Chyg==
+ember-try@^1.4.0:
+  version "1.4.0"
+  resolved "https://artifacts.apple.com/api/npm/npm-private/ember-try/-/ember-try-1.4.0.tgz#be15965bd1727c27a65a78c4c8392f03763cc565"
+  integrity sha1-vhWWW9FyfCemWnjEyDkvA3Y8xWU=
   dependencies:
-    chalk "^2.3.0"
+    chalk "^2.4.2"
     cli-table3 "^0.5.1"
     core-object "^3.1.5"
-    debug "^3.1.0"
+    debug "^4.1.1"
     ember-try-config "^3.0.0"
     execa "^1.0.0"
     extend "^3.0.0"
     fs-extra "^5.0.0"
     promise-map-series "^0.2.1"
-    resolve "^1.1.6"
-    rimraf "^2.3.2"
+    resolve "^1.10.1"
+    rimraf "^2.6.3"
     rsvp "^4.7.0"
-    walk-sync "^0.3.3"
+    walk-sync "^1.1.3"
 
 emit-function@0.0.2:
   version "0.0.2"
@@ -3918,6 +3937,11 @@ ensure-posix-path@^1.0.0, ensure-posix-path@^1.0.1, ensure-posix-path@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ensure-posix-path/-/ensure-posix-path-1.0.2.tgz#a65b3e42d0b71cfc585eb774f9943c8d9b91b0c2"
   integrity sha1-pls+QtC3HPxYXrd0+ZQ8jZuRsMI=
+
+ensure-posix-path@^1.1.0:
+  version "1.1.1"
+  resolved "https://artifacts.apple.com/api/npm/npm-private/ensure-posix-path/-/ensure-posix-path-1.1.1.tgz#3c62bdb19fa4681544289edb2b382adc029179ce"
+  integrity sha1-PGK9sZ+kaBVEKJ7bKzgq3AKRec4=
 
 entities@~1.1.1:
   version "1.1.2"
@@ -6751,6 +6775,13 @@ matcher-collection@^1.0.0, matcher-collection@^1.0.4:
   dependencies:
     minimatch "^3.0.2"
 
+matcher-collection@^1.1.1:
+  version "1.1.2"
+  resolved "https://artifacts.apple.com/api/npm/npm-private/matcher-collection/-/matcher-collection-1.1.2.tgz#1076f506f10ca85897b53d14ef54f90a5c426838"
+  integrity sha1-EHb1BvEMqFiXtT0U71T5ClxCaDg=
+  dependencies:
+    minimatch "^3.0.2"
+
 mdurl@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/mdurl/-/mdurl-1.0.1.tgz#fe85b2ec75a59037f2adfec100fd6c601761152e"
@@ -6996,6 +7027,11 @@ ms@2.0.0:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
   integrity sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=
 
+ms@2.1.2:
+  version "2.1.2"
+  resolved "https://artifacts.apple.com/api/npm/npm-private/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
+  integrity sha1-0J0fNXtEP0kzgqjrPM0YOHKuYAk=
+
 ms@^2.0.0, ms@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
@@ -7077,6 +7113,11 @@ node-fetch@^2.3.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
   integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
+
+node-fetch@^2.6.0:
+  version "2.6.1"
+  resolved "https://artifacts.apple.com/api/npm/npm-private/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
+  integrity sha1-BFvTI2Mfdu0uK1VXM5RBa2OaAFI=
 
 node-int64@^0.4.0:
   version "0.4.0"
@@ -8293,7 +8334,7 @@ resolve@^1.10.0:
   dependencies:
     path-parse "^1.0.6"
 
-resolve@^1.17.0:
+resolve@^1.10.1, resolve@^1.17.0:
   version "1.20.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.20.0.tgz#629a013fb3f70755d6f0b7935cc1c2c5378b1975"
   integrity sha512-wENBPt4ySzg4ybFQW2TT1zMQucPK95HSh/nq2CFTZVOGut2+pQvSsgtda4d26YrYcr067wjbmzOG8byDPBX63A==
@@ -8344,10 +8385,17 @@ reusify@^1.0.0:
   resolved "https://registry.yarnpkg.com/reusify/-/reusify-1.0.4.tgz#90da382b1e126efc02146e90845a88db12925d76"
   integrity sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
 
-rimraf@^2.2.8, rimraf@^2.3.2, rimraf@^2.3.4, rimraf@^2.4.3, rimraf@^2.4.4, rimraf@^2.5.3, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2, rimraf@~2.6.2:
+rimraf@^2.2.8, rimraf@^2.3.4, rimraf@^2.4.3, rimraf@^2.4.4, rimraf@^2.5.3, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2, rimraf@~2.6.2:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.3.tgz#b2d104fe0d8fb27cf9e0a1cda8262dd3833c6cab"
   integrity sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==
+  dependencies:
+    glob "^7.1.3"
+
+rimraf@^2.6.3:
+  version "2.7.1"
+  resolved "https://artifacts.apple.com/api/npm/npm-private/rimraf/-/rimraf-2.7.1.tgz#35797f13a7fdadc566142c29d4f07ccad483e3ec"
+  integrity sha1-NXl/E6f9rcVmFCwp1PB8ytSD4+w=
   dependencies:
     glob "^7.1.3"
 
@@ -9590,6 +9638,15 @@ walk-sync@^1.0.0:
   dependencies:
     ensure-posix-path "^1.0.0"
     matcher-collection "^1.0.0"
+
+walk-sync@^1.1.3:
+  version "1.1.4"
+  resolved "https://artifacts.apple.com/api/npm/npm-private/walk-sync/-/walk-sync-1.1.4.tgz#81049f3d8095479b49574cfa5f558d7a252b127d"
+  integrity sha1-gQSfPYCVR5tJV0z6X1WNeiUrEn0=
+  dependencies:
+    "@types/minimatch" "^3.0.3"
+    ensure-posix-path "^1.1.0"
+    matcher-collection "^1.1.1"
 
 walker@~1.0.5:
   version "1.0.7"
