@@ -1,3 +1,4 @@
+import { assert } from '@ember/debug';
 import { setModifierManager, capabilities } from '@ember/modifier';
 
 /**
@@ -54,11 +55,16 @@ export default setModifierManager(
       _state,
       element,
       {
-        positional: [fn, ...args],
+        positional: [didInsertFunction, ...args],
         named,
       }
     ) {
-      fn(element, args, named);
+      assert(
+        `You need to pass a function as the first argument to \`did-insert\` you passed ${didInsertFunction}`,
+        typeof didInsertFunction === 'function'
+      );
+
+      didInsertFunction(element, args, named);
     },
 
     updateModifier() {},

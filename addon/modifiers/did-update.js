@@ -1,3 +1,4 @@
+import { assert } from '@ember/debug';
 import { setModifierManager, capabilities } from '@ember/modifier';
 
 /**
@@ -69,9 +70,14 @@ export default setModifierManager(
     },
 
     updateModifier({ element }, args) {
-      let [fn, ...positional] = args.positional;
+      let [didUpdateFunction, ...positional] = args.positional;
 
-      fn(element, positional, args.named);
+      assert(
+        `You need to pass a function as the first argument to \`did-update\` you passed ${didUpdateFunction}`,
+        typeof didUpdateFunction === 'function'
+      );
+
+      didUpdateFunction(element, positional, args.named);
     },
 
     destroyModifier() {},

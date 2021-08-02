@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, setupOnerror } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import Component from '@ember/component';
 
@@ -75,5 +75,20 @@ module('Integration | Modifier | did-insert', function(hooks) {
     await render(hbs`{{sometimes-fades-in shouldShow=true}}`);
 
     assert.dom('.alert').hasClass('fade-in');
+  });
+
+  test('throws meaningful error when did-insert does not receive a function', async function(assert) {
+    assert.expect(1);
+
+    this.notAFunction = null;
+
+    setupOnerror(function(error) {
+      assert.equal(
+        error.message,
+        'Assertion Failed: You need to pass a function as the first argument to `did-insert` you passed null'
+      );
+    });
+
+    await render(hbs`<div {{did-insert this.notAFunction}}></div>`);
   });
 });

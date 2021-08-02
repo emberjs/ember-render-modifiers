@@ -1,3 +1,4 @@
+import { assert } from '@ember/debug';
 import { setModifierManager, capabilities } from '@ember/modifier';
 
 /**
@@ -53,9 +54,14 @@ export default setModifierManager(
     updateModifier() {},
 
     destroyModifier({ element }, args) {
-      let [fn, ...positional] = args.positional;
+      let [willDestroyFunction, ...positional] = args.positional;
 
-      fn(element, positional, args.named);
+      assert(
+        `You need to pass a function as the first argument to \`will-destroy\` you passed ${willDestroyFunction}`,
+        typeof willDestroyFunction === 'function'
+      );
+
+      willDestroyFunction(element, positional, args.named);
     },
   }),
   class WillDestroyModifier {}
