@@ -45,8 +45,6 @@ module('Integration | Modifier | will-destroy', function(hooks) {
   });
 
   test('throws meaningful error when will-destroy does not receive a function', async function(assert) {
-    assert.expect(2);
-
     this.notAFunction = null;
     this.set('show', true);
 
