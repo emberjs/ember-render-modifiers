@@ -2,7 +2,12 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import Component from '@glimmer/component';
+
+// We want to use ember classic components in this test
+// So that we can test all the way back to ember-lts-2.18
+// eslint-disable-next-line ember/no-classic-components
+import Component from '@ember/component';
+
 
 module('Integration | Modifier | did-insert', function (hooks) {
   setupRenderingTest(hooks);
@@ -52,23 +57,20 @@ module('Integration | Modifier | did-insert', function (hooks) {
   });
 
   test('adding class on insert (RFC example)', async function (assert) {
-    let component;
-
-    this.owner.register('component:sometimes-fades-in', class extends Component {
-      constructor(owner, args) {
-        super(owner, args);
-        component = this;
-      }
-
-      fadeIn(element) {
-        element.classList.add('fade-in');
-      }
-    });
+    this.owner.register(
+      'component:sometimes-fades-in',
+      // eslint-disable-next-line ember/no-classic-classes
+      Component.extend({
+        fadeIn(element) {
+          element.classList.add('fade-in');
+        },
+      })
+    );
 
     this.owner.register(
       'template:components/sometimes-fades-in',
       hbs`
-        {{#if @shouldShow}}
+        {{#if shouldShow}}
           <div {{did-insert this.fadeIn}} class="alert">
             {{yield}}
           </div>
@@ -76,7 +78,8 @@ module('Integration | Modifier | did-insert', function (hooks) {
       `
     );
 
-    await render(hbs`<SometimesFadesIn @shouldShow={{true}} />`);
+    await render(hbs`{{sometimes-fades-in shouldShow=true}}`);
+
     assert.dom('.alert').hasClass('fade-in');
   });
 });
