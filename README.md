@@ -28,8 +28,9 @@ most use-cases where you might want to reach for this package.
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v2.18 or above
-* Ember CLI v2.13 or above
+* Ember.js v3.20 or above
+* Ember CLI v3.20 or above
+* Node.js v10 or above
 
 
 Installation
@@ -235,6 +236,12 @@ Usage:
   </node>
 </Root>
 ```
+
+Contributing
+------------------------------------------------------------------------------
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
+
 
 License
 ------------------------------------------------------------------------------
