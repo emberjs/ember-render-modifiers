@@ -3,13 +3,13 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Modifier | will-destroy', function(hooks) {
+module('Integration | Modifier | will-destroy', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it basically works', async function(assert) {
+  test('it basically works', async function (assert) {
     assert.expect(2);
 
-    this.someMethod = element => {
+    this.someMethod = (element) => {
       assert.equal(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
     };
@@ -23,7 +23,7 @@ module('Integration | Modifier | will-destroy', function(hooks) {
     this.set('show', false);
   });
 
-  test('it can accept arguments', async function(assert) {
+  test('it can accept arguments', async function (assert) {
     assert.expect(4);
 
     this.someMethod = (element, positional, named) => {
