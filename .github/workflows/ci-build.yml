@@ -50,6 +50,8 @@ jobs:
           - ember-beta
           - ember-canary
           - ember-default-with-jquery
+          - embroider-safe
+          - embroider-optimized
 
     steps:
       - uses: actions/checkout@v1
