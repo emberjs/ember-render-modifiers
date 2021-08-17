@@ -15,8 +15,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
           node-version: 10.x
       - name: install dependencies
@@ -39,7 +39,6 @@ jobs:
       fail-fast: true
       matrix:
         ember-try-scenario:
-          - ember-lts-3.4
           - ember-lts-3.8
           - ember-lts-3.12
           - ember-lts-3.16
@@ -50,11 +49,14 @@ jobs:
           - ember-canary
           - ember-default-with-jquery
           - embroider-safe
-          - embroider-optimized
+        allow-failure: [false]
+        include:
+          - ember-try-scenario: embroider-optimized
+            allow-failure: true
 
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
           node-version: 12.x
       - name: install dependencies
