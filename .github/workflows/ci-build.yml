@@ -26,7 +26,7 @@ jobs:
       - name: lint:hbs
         run: yarn lint:hbs
       - name: test
-        run: yarn test
+        run: yarn test:ember
 
   try-scenarios:
     name: ${{ matrix.ember-try-scenario }}
