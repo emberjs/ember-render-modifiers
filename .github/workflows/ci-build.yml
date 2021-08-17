@@ -48,8 +48,11 @@ jobs:
           - ember-lts-3.24
           - ember-release
           - ember-beta
-          - ember-canary
           - ember-default-with-jquery
+        allow-failure: [false]
+        include:
+          - ember-try-scenario: ember-canary
+            allow-failure: true
 
     steps:
       - uses: actions/checkout@v1
