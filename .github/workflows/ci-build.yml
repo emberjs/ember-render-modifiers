@@ -15,8 +15,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
           node-version: 10.x
       - name: install dependencies
@@ -32,6 +32,7 @@ jobs:
     name: ${{ matrix.ember-try-scenario }}
 
     runs-on: ubuntu-latest
+    timeout-minutes: 6
 
     needs: test
 
@@ -48,12 +49,15 @@ jobs:
           - ember-lts-3.24
           - ember-release
           - ember-beta
-          - ember-canary
           - ember-default-with-jquery
+        allow-failure: [false]
+        include:
+          - ember-try-scenario: ember-canary
+            allow-failure: true
 
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
           node-version: 12.x
       - name: install dependencies

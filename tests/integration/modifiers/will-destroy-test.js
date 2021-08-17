@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, setupOnerror } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Modifier | will-destroy', function(hooks) {
@@ -39,6 +39,23 @@ module('Integration | Modifier | will-destroy', function(hooks) {
     await render(
       hbs`{{#if show}}<div data-foo="some-thing" {{will-destroy this.someMethod "some-positional-value" some="hash-value"}}></div>{{/if}}`
     );
+
+    // trigger destroy
+    this.set('show', false);
+  });
+
+  test('throws meaningful error when will-destroy does not receive a function', async function(assert) {
+    this.notAFunction = null;
+    this.set('show', true);
+
+    setupOnerror(function(error) {
+      assert.equal(
+        error.message,
+        'Assertion Failed: You need to pass a function as the first argument to `will-destroy` you passed null'
+      );
+    });
+
+    await render(hbs`{{#if show}}<div {{will-destroy this.notAFunction}}></div>{{/if}}`);
 
     // trigger destroy
     this.set('show', false);
