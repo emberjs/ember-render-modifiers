@@ -1,4 +1,5 @@
 import { setModifierManager, capabilities } from '@ember/modifier';
+import { gte } from 'ember-compatibility-helpers';
 
 /**
   The `{{did-update}}` element modifier is activated when any of its arguments
@@ -58,17 +59,35 @@ import { setModifierManager, capabilities } from '@ember/modifier';
 */
 export default setModifierManager(
   () => ({
-    capabilities: capabilities('3.13', { disableAutoTracking: true }),
+    capabilities: gte('3.22.0')
+      ? capabilities('3.22', { disableAutoTracking: false })
+      : capabilities('3.13', { disableAutoTracking: true }),
 
     createModifier() {
       return { element: null };
     },
-    installModifier(state, element) {
+    installModifier(state, element, args) {
       // save element into state bucket
       state.element = element;
+
+      if (gte('3.22.0')) {
+        // Consume individual properties to entangle tracking.
+        // https://github.com/emberjs/ember.js/issues/19277
+        // https://github.com/ember-modifier/ember-modifier/pull/63#issuecomment-815908201
+        args.positional.forEach(() => {});
+        args.named && Object.values(args.named);
+      }
     },
 
     updateModifier({ element }, args) {
+      if (gte('3.22.0')) {
+        // Consume individual properties to entangle tracking.
+        // https://github.com/emberjs/ember.js/issues/19277
+        // https://github.com/ember-modifier/ember-modifier/pull/63#issuecomment-815908201
+        args.positional.forEach(() => {});
+        args.named && Object.values(args.named);
+      }
+
       let [fn, ...positional] = args.positional;
 
       fn(element, positional, args.named);
