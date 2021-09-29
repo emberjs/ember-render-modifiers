@@ -16,7 +16,7 @@ module('Integration | Modifier | will-destroy', function (hooks) {
     this.set('show', true);
 
     await render(
-      hbs`{{#if show}}<div data-foo="some-thing" {{will-destroy this.someMethod}}></div>{{/if}}`
+      hbs`{{#if this.show}}<div data-foo="some-thing" {{will-destroy this.someMethod}}></div>{{/if}}`
     );
 
     // trigger destroy
@@ -37,7 +37,7 @@ module('Integration | Modifier | will-destroy', function (hooks) {
     this.set('show', true);
 
     await render(
-      hbs`{{#if show}}<div data-foo="some-thing" {{will-destroy this.someMethod "some-positional-value" some="hash-value"}}></div>{{/if}}`
+      hbs`{{#if this.show}}<div data-foo="some-thing" {{will-destroy this.someMethod "some-positional-value" some="hash-value"}}></div>{{/if}}`
     );
 
     // trigger destroy
