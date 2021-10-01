@@ -2,22 +2,26 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
+
+// We want to use ember classic components in this test
+// So that we can test all the way back to ember-lts-2.18
+// eslint-disable-next-line ember/no-classic-components
 import Component from '@ember/component';
 
-module('Integration | Modifier | did-insert', function(hooks) {
+module('Integration | Modifier | did-insert', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it basically works', async function(assert) {
+  test('it basically works', async function (assert) {
     assert.expect(2);
 
-    this.someMethod = element => {
+    this.someMethod = (element) => {
       assert.equal(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
     };
     await render(hbs`<div data-foo="some-thing" {{did-insert this.someMethod}}></div>`);
   });
 
-  test('it can accept arguments', async function(assert) {
+  test('it can accept arguments', async function (assert) {
     assert.expect(4);
 
     this.someMethod = (element, positional, named) => {
@@ -33,7 +37,7 @@ module('Integration | Modifier | did-insert', function(hooks) {
     );
   });
 
-  test('it is not invoked again when arguments change', async function(assert) {
+  test('it is not invoked again when arguments change', async function (assert) {
     assert.expect(4);
 
     this.someMethod = (element, positional, named) => {
@@ -51,9 +55,10 @@ module('Integration | Modifier | did-insert', function(hooks) {
     this.set('firstArg', 'updated');
   });
 
-  test('adding class on insert (RFC example)', async function(assert) {
+  test('adding class on insert (RFC example)', async function (assert) {
     this.owner.register(
       'component:sometimes-fades-in',
+      // eslint-disable-next-line ember/no-classic-classes
       Component.extend({
         fadeIn(element) {
           element.classList.add('fade-in');
@@ -64,7 +69,7 @@ module('Integration | Modifier | did-insert', function(hooks) {
     this.owner.register(
       'template:components/sometimes-fades-in',
       hbs`
-        {{#if shouldShow}}
+        {{#if this.shouldShow}}
           <div {{did-insert this.fadeIn}} class="alert">
             {{yield}}
           </div>
@@ -72,7 +77,10 @@ module('Integration | Modifier | did-insert', function(hooks) {
       `
     );
 
-    await render(hbs`{{sometimes-fades-in shouldShow=true}}`);
+    await render(hbs`
+      {{!-- template-lint-disable no-curly-component-invocation --}}
+      {{sometimes-fades-in shouldShow=true}}
+    `);
 
     assert.dom('.alert').hasClass('fade-in');
   });

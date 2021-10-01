@@ -3,10 +3,10 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Modifier | did-update', function(hooks) {
+module('Integration | Modifier | did-update', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it basically works', async function(assert) {
+  test('it basically works', async function (assert) {
     assert.expect(4);
 
     this.someMethod = (element, positional, named) => {

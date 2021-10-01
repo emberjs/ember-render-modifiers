@@ -1,47 +1,41 @@
-@ember/render-modifiers
-==============================================================================
+# @ember/render-modifiers
 
 Provides element modifiers that can be used to hook into specific portions of
 the rendering lifecycle.
 
-### When to use these modifiers (and when *not* to use them)
+### When to use these modifiers (and when _not_ to use them)
 
-The modifiers provided in this package are ideal for quickly migrating away from 
-classic Ember components to Glimmer components, because they largely allow you to 
-use the same lifecycle hook methods you've already written while attaching them to 
-these modifiers. For example, a `didInsertElement` hook could be called by 
+The modifiers provided in this package are ideal for quickly migrating away from
+classic Ember components to Glimmer components, because they largely allow you to
+use the same lifecycle hook methods you've already written while attaching them to
+these modifiers. For example, a `didInsertElement` hook could be called by
 `{{did-insert this.didInsertElement}}` to ease your migration process.
 
-However, we strongly encourage you to take this opportunity to rethink your 
-functionality rather than use these modifiers as a crutch. In many cases, classic 
-lifecycle hooks like `didInsertElement` can be rewritten as custom modifiers that 
-internalize functionality manipulating or generating state from a DOM element. 
-Other times, you may find that a modifier is not the right fit for that logic at all, 
+However, we strongly encourage you to take this opportunity to rethink your
+functionality rather than use these modifiers as a crutch. In many cases, classic
+lifecycle hooks like `didInsertElement` can be rewritten as custom modifiers that
+internalize functionality manipulating or generating state from a DOM element.
+Other times, you may find that a modifier is not the right fit for that logic at all,
 in which case it's worth revisiting the design to find a better pattern.
 
-Either way, we recommend using these modifiers with caution. They are very useful for 
-quickly bridging the gap between classic components and Glimmer components, but they 
-are still generally an anti-pattern. We recommend considering a custom modifier in 
+Either way, we recommend using these modifiers with caution. They are very useful for
+quickly bridging the gap between classic components and Glimmer components, but they
+are still generally an anti-pattern. We recommend considering a custom modifier in
 most use-cases where you might want to reach for this package.
 
+## Compatibility
 
-Compatibility
-------------------------------------------------------------------------------
+- Ember.js v3.20 or above
+- Ember CLI v3.20 or above
+- Node.js v10 or above
 
-* Ember.js v2.18 or above
-* Ember CLI v2.13 or above
-
-
-Installation
-------------------------------------------------------------------------------
+## Installation
 
 ```
 ember install @ember/render-modifiers
 ```
 
-
-Usage Examples
-------------------------------------------------------------------------------
+## Usage Examples
 
 ### Example: Scrolling an element to a position
 
@@ -53,13 +47,14 @@ Before:
 ```hbs
 {{yield}}
 ```
+
 ```js
 export default Component.extend({
   classNames: ['scroll-container'],
 
   didRender() {
     this.element.scrollTop = this.scrollPosition;
-  }
+  },
 });
 ```
 
@@ -69,12 +64,12 @@ After:
 <div
   {{did-insert this.setScrollPosition @scrollPosition}}
   {{did-update this.setScrollPosition @scrollPosition}}
-
-  class="scroll-container"
+  class='scroll-container'
 >
   {{yield}}
 </div>
 ```
+
 ```js
 export default class Component.extend({
   setScrollPosition(element, [scrollPosition]) {
@@ -94,11 +89,12 @@ Before:
 
 ```hbs
 {{#if this.shouldShow}}
-  <div class="alert">
+  <div class='alert'>
     {{yield}}
   </div>
 {{/if}}
 ```
+
 ```js
 export default Component.extend({
   didRender() {
@@ -107,7 +103,7 @@ export default Component.extend({
     if (alert) {
       alert.classList.add('fade-in');
     }
-  }
+  },
 });
 ```
 
@@ -115,16 +111,17 @@ After:
 
 ```hbs
 {{#if this.shouldShow}}
-  <div {{did-insert this.fadeIn}} class="alert">
+  <div {{did-insert this.fadeIn}} class='alert'>
     {{yield}}
   </div>
 {{/if}}
 ```
+
 ```js
 export default Component.extend({
   fadeIn(element) {
     element.classList.add('fade-in');
-  }
+  },
 });
 ```
 
@@ -135,7 +132,7 @@ _contents_ or _attributes_ on the element change. For instance, `{{did-update}}`
 will _not_ rerun when `@type` changes here:
 
 ```hbs
-<div {{did-update this.setupType}} class="{{@type}}"></div>
+<div {{did-update this.setupType}} class='{{@type}}'></div>
 ```
 
 If `{{did-update}}` should rerun whenever a value changes, the value should be
@@ -148,11 +145,12 @@ this:
   {{@text}}
 </textarea>
 ```
+
 ```js
 export default Component.extend({
   resizeArea(element) {
     element.style.height = `${element.scrollHeight}px`;
-  }
+  },
 });
 ```
 
@@ -203,9 +201,10 @@ export default Component.extend({
   }
 }
 ```
+
 ```hbs
 <!-- components/node.hbs -->
-{{yield (component "node" parent=this)}}
+{{yield (component 'node' parent=this)}}
 ```
 
 Root component:
@@ -216,13 +215,11 @@ import NodeComponent from './node.js';
 
 export default NodeComponent.extend();
 ```
+
 ```hbs
 <!-- components/root.hbs -->
-<div
-  {{did-insert (action this.didInsertNode)}}
-  {{will-destroy (action this.willDestroyNode)}}
->
-  {{yield (component "node" parent=this)}}
+<div {{did-insert (action this.didInsertNode)}} {{will-destroy (action this.willDestroyNode)}}>
+  {{yield (component 'node' parent=this)}}
 </div>
 ```
 
@@ -231,12 +228,15 @@ Usage:
 ```hbs
 <Root as |node|>
   <node as |node|>
-    <node />
+    <node></node>
   </node>
 </Root>
 ```
 
-License
-------------------------------------------------------------------------------
+## Contributing
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
+
+## License
 
 This project is licensed under the [MIT License](LICENSE.md).

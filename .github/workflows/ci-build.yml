@@ -15,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          node-version: 10.x
+          node-version: 12.x
       - name: install dependencies
         run: yarn install
       - name: lint:js
@@ -26,7 +26,7 @@ jobs:
       - name: lint:hbs
         run: yarn lint:hbs
       - name: test
-        run: yarn test
+        run: yarn test:ember
 
   try-scenarios:
     name: ${{ matrix.ember-try-scenario }}
@@ -39,8 +39,6 @@ jobs:
       fail-fast: true
       matrix:
         ember-try-scenario:
-          - ember-lts-2.18
-          - ember-lts-3.4
           - ember-lts-3.8
           - ember-lts-3.12
           - ember-lts-3.16
@@ -50,10 +48,11 @@ jobs:
           - ember-beta
           - ember-canary
           - ember-default-with-jquery
+          - embroider-safe
 
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
           node-version: 12.x
       - name: install dependencies
