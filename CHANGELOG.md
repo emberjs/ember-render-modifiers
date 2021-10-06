@@ -1,3 +1,28 @@
+
+## v2.0.0 (2021-10-06)
+
+#### :boom: Breaking Change
+* [#46](https://github.com/emberjs/ember-render-modifiers/pull/46) Update Ember to v3.28.0, drop node 10 support ([@SergeAstapov](https://github.com/SergeAstapov))
+* [#40](https://github.com/emberjs/ember-render-modifiers/pull/40) Update ember to v3.27.0, drop support for node < 10 ([@kiwiupover](https://github.com/kiwiupover))
+
+#### :rocket: Enhancement
+* [#42](https://github.com/emberjs/ember-render-modifiers/pull/42) Update manager capabilities to 3.22 to fix deprecation in Ember 3.26+ ([@SergeAstapov](https://github.com/SergeAstapov))
+* [#29](https://github.com/emberjs/ember-render-modifiers/pull/29) Use destructuring in `did-insert` modifier to allow better IDE integration (template argument hints) ([@patricklx](https://github.com/patricklx))
+
+#### :house: Internal
+* [#48](https://github.com/emberjs/ember-render-modifiers/pull/48) Update release it ([@rwwagner90](https://github.com/rwwagner90))
+* [#43](https://github.com/emberjs/ember-render-modifiers/pull/43) Fix deprecations in tests ([@SergeAstapov](https://github.com/SergeAstapov))
+* [#44](https://github.com/emberjs/ember-render-modifiers/pull/44) Use ember-auto-import 2 ([@rwwagner90](https://github.com/rwwagner90))
+
+#### Committers: 6
+- Dave Laird ([@kiwiupover](https://github.com/kiwiupover))
+- Jordan Hawker ([@elwayman02](https://github.com/elwayman02))
+- Robert Wagner ([@rwwagner90](https://github.com/rwwagner90))
+- Sergey Astapov ([@SergeAstapov](https://github.com/SergeAstapov))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+- [@patricklx](https://github.com/patricklx)
+
+
 ## v1.0.2 (2019-10-03)
 
 #### :bug: Bug Fix
