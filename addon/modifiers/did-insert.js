@@ -1,6 +1,8 @@
 import { setModifierManager, capabilities } from '@ember/modifier';
 import { gte } from 'ember-compatibility-helpers';
 
+import assertFunction from '../-private/assert-function';
+
 /**
   The `{{did-insert}}` element modifier is activated when an element is
   inserted into the DOM.
@@ -52,6 +54,8 @@ export default setModifierManager(
     createModifier() {},
 
     installModifier(_state, element, { positional: [fn, ...args], named }) {
+      assertFunction('did-insert', fn);
+
       fn(element, args, named);
     },
 
