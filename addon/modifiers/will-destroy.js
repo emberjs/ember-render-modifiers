@@ -1,6 +1,8 @@
 import { setModifierManager, capabilities } from '@ember/modifier';
 import { gte } from 'ember-compatibility-helpers';
 
+import assertFunction from '../-private/assert-function';
+
 /**
   The `{{will-destroy}}` element modifier is activated immediately before the element
   is removed from the DOM.
@@ -47,7 +49,9 @@ export default setModifierManager(
       return { element: null };
     },
 
-    installModifier(state, element) {
+    installModifier(state, element, { positional: [fn] }) {
+      assertFunction('did-destroy', fn);
+
       state.element = element;
     },
 
@@ -55,6 +59,8 @@ export default setModifierManager(
 
     destroyModifier({ element }, args) {
       let [fn, ...positional] = args.positional;
+
+      assertFunction('did-destroy', fn);
 
       fn(element, positional, args.named);
     },

@@ -1,6 +1,8 @@
 import { setModifierManager, capabilities } from '@ember/modifier';
 import { gte } from 'ember-compatibility-helpers';
 
+import assertFunction from '../-private/assert-function';
+
 /**
   The `{{did-update}}` element modifier is activated when any of its arguments
   are updated. It does not run on initial render.
@@ -67,6 +69,10 @@ export default setModifierManager(
       return { element: null };
     },
     installModifier(state, element, args) {
+      const [fn] = args.positional;
+
+      assertFunction('did-update', fn);
+
       // save element into state bucket
       state.element = element;
 
@@ -89,6 +95,8 @@ export default setModifierManager(
       }
 
       let [fn, ...positional] = args.positional;
+
+      assertFunction('did-update', fn);
 
       fn(element, positional, args.named);
     },

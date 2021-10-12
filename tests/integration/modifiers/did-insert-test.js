@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, setupOnerror } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 // We want to use ember classic components in this test
@@ -83,5 +83,35 @@ module('Integration | Modifier | did-insert', function (hooks) {
     `);
 
     assert.dom('.alert').hasClass('fade-in');
+  });
+
+  test('provides a useful error on insert', async function (assert) {
+    assert.expect(1);
+
+    // Setup error capturing
+    setupOnerror(function (err) {
+      assert.equal(
+        err.toString(),
+        `TypeError: did-insert expected a function, instead received "undefined"`
+      );
+    });
+
+    this.owner.register('component:undefined-method-call', Component);
+    this.owner.register(
+      'template:components/undefined-method-call',
+      hbs`
+      <div {{did-insert this.nonExistentMethod}} class="alert">
+        {{yield}}
+      </div>
+    `
+    );
+
+    await render(hbs`
+      {{!-- template-lint-disable no-curly-component-invocation --}}
+      {{undefined-method-call}}
+    `);
+
+    // Reset error capturing
+    setupOnerror();
   });
 });
