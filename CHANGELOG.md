@@ -3,10 +3,10 @@
 
 #### :boom: Breaking Change
 * [#46](https://github.com/emberjs/ember-render-modifiers/pull/46) Update Ember to v3.28.0, drop node 10 support ([@SergeAstapov](https://github.com/SergeAstapov))
+* [#42](https://github.com/emberjs/ember-render-modifiers/pull/42) Update manager capabilities to 3.22 to fix deprecation in Ember 3.26+ ([@SergeAstapov](https://github.com/SergeAstapov))
 * [#40](https://github.com/emberjs/ember-render-modifiers/pull/40) Update ember to v3.27.0, drop support for node < 10 ([@kiwiupover](https://github.com/kiwiupover))
 
 #### :rocket: Enhancement
-* [#42](https://github.com/emberjs/ember-render-modifiers/pull/42) Update manager capabilities to 3.22 to fix deprecation in Ember 3.26+ ([@SergeAstapov](https://github.com/SergeAstapov))
 * [#29](https://github.com/emberjs/ember-render-modifiers/pull/29) Use destructuring in `did-insert` modifier to allow better IDE integration (template argument hints) ([@patricklx](https://github.com/patricklx))
 
 #### :house: Internal
