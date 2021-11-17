@@ -1,5 +1,6 @@
 import { setModifierManager, capabilities } from '@ember/modifier';
 import { gte } from 'ember-compatibility-helpers';
+import { untrack } from '@glimmer/validator';
 
 /**
   The `{{did-update}}` element modifier is activated when any of its arguments
@@ -80,17 +81,20 @@ export default setModifierManager(
     },
 
     updateModifier({ element }, args) {
+      let [fn, ...positional] = args.positional;
+
       if (gte('3.22.0')) {
         // Consume individual properties to entangle tracking.
         // https://github.com/emberjs/ember.js/issues/19277
         // https://github.com/ember-modifier/ember-modifier/pull/63#issuecomment-815908201
         args.positional.forEach(() => {});
         args.named && Object.values(args.named);
+        untrack(() => {
+          fn(element, positional, args.named);
+        });
+      } else {
+        fn(element, positional, args.named);
       }
-
-      let [fn, ...positional] = args.positional;
-
-      fn(element, positional, args.named);
     },
 
     destroyModifier() {},
