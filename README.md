@@ -218,7 +218,7 @@ export default NodeComponent.extend();
 
 ```hbs
 <!-- components/root.hbs -->
-<div {{did-insert (action this.didInsertNode)}} {{will-destroy (action this.willDestroyNode)}}>
+<div {{did-insert this.didInsertNode}} {{will-destroy this.willDestroyNode}}>
   {{yield (component 'node' parent=this)}}
 </div>
 ```
