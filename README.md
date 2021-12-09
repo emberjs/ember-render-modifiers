@@ -71,7 +71,7 @@ After:
 ```
 
 ```js
-export default class Component.extend({
+export default Component.extend({
   setScrollPosition(element, [scrollPosition]) {
     element.scrollTop = scrollPosition;
   }
@@ -172,34 +172,34 @@ export default Component.extend({
     this.children = new Set();
 
     this.parent.registerChild(this);
-  }
+  },
 
   willDestroy() {
     super(...arguments);
 
     this.parent.unregisterChild(this);
-  }
+  },
 
   registerChild(child) {
     this.children.add(child);
-  }
+  },
 
   unregisterChild(child) {
     this.children.delete(child);
-  }
+  },
 
   didInsertNode(element) {
     // library setup code goes here
 
     this.children.forEach(c => c.didInsertNode(element));
-  }
+  },
 
   willDestroyNode(element) {
     // library teardown code goes here
 
     this.children.forEach(c => c.willDestroyNode(element));
-  }
-}
+  },
+});
 ```
 
 ```hbs
