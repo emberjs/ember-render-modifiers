@@ -4,6 +4,8 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
+import { macroCondition, dependencySatisfies } from '@embroider/macros';
+
 module('Integration | Modifier | did-update', function (hooks) {
   setupRenderingTest(hooks);
 
@@ -26,27 +28,30 @@ module('Integration | Modifier | did-update', function (hooks) {
     this.set('boundValue', 'update');
   });
 
-  test('it consumes tracked properties without re-invoking', async function (assert) {
-    assert.expect(1);
+  // only run the next test where @tracked is present
+  if (macroCondition(dependencySatisfies('ember-source', '>= 3.12.0'))) {
+    test('it consumes tracked properties without re-invoking', async function (assert) {
+      assert.expect(1);
 
-    class Context {
-      @tracked boundValue = 'initial';
-      @tracked secondaryValue = 'initial';
-    }
+      class Context {
+        @tracked boundValue = 'initial';
+        @tracked secondaryValue = 'initial';
+      }
 
-    this.context = new Context();
+      this.context = new Context();
 
-    this.someMethod = () => {
-      // This assertion works as an assurance that we render before `secondaryValue` changes,
-      // and consumes its tag to ensure reading tracked properties won't re-trigger the modifier
-      assert.equal(this.context.secondaryValue, 'initial');
-    };
+      this.someMethod = () => {
+        // This assertion works as an assurance that we render before `secondaryValue` changes,
+        // and consumes its tag to ensure reading tracked properties won't re-trigger the modifier
+        assert.equal(this.context.secondaryValue, 'initial');
+      };
 
-    await render(hbs`<div {{did-update this.someMethod this.context.boundValue}}></div>`);
+      await render(hbs`<div {{did-update this.someMethod this.context.boundValue}}></div>`);
 
-    this.context.boundValue = 'update';
-    await settled();
-    this.context.secondaryValue = 'update';
-    await settled();
-  });
+      this.context.boundValue = 'update';
+      await settled();
+      this.context.secondaryValue = 'update';
+      await settled();
+    });
+  }
 });
