@@ -71,11 +71,11 @@ After:
 ```
 
 ```js
-export default Component.extend({
+export default class extends Component {
   setScrollPosition(element, [scrollPosition]) {
     element.scrollTop = scrollPosition;
   }
-})
+}
 ```
 
 #### Example: Adding a class to an element after render for CSS animations
@@ -96,15 +96,15 @@ Before:
 ```
 
 ```js
-export default Component.extend({
+export default class extends Component {
   didRender() {
     let alert = this.element.querySelector('.alert');
 
     if (alert) {
       alert.classList.add('fade-in');
     }
-  },
-});
+  }
+}
 ```
 
 After:
@@ -118,11 +118,11 @@ After:
 ```
 
 ```js
-export default Component.extend({
+export default class extends Component {
   fadeIn(element) {
     element.classList.add('fade-in');
-  },
-});
+  }
+}
 ```
 
 #### Example: Resizing text area
@@ -147,11 +147,11 @@ this:
 ```
 
 ```js
-export default Component.extend({
+export default class extends Component {
   resizeArea(element) {
     element.style.height = `${element.scrollHeight}px`;
-  },
-});
+  }
+}
 ```
 
 #### Example: `ember-composability-tools` style rendering
@@ -166,39 +166,39 @@ Node component:
 
 ```js
 // components/node.js
-export default Component.extend({
-  init() {
+export default class extends Component {
+  constructor() {
     super(...arguments);
     this.children = new Set();
 
-    this.parent.registerChild(this);
-  },
+    this.args.parent.registerChild(this);
+  }
 
   willDestroy() {
     super(...arguments);
 
-    this.parent.unregisterChild(this);
-  },
+    this.args.parent.unregisterChild(this);
+  }
 
   registerChild(child) {
     this.children.add(child);
-  },
+  }
 
   unregisterChild(child) {
     this.children.delete(child);
-  },
+  }
 
   didInsertNode(element) {
     // library setup code goes here
 
     this.children.forEach(c => c.didInsertNode(element));
-  },
+  }
 
   willDestroyNode(element) {
     // library teardown code goes here
 
     this.children.forEach(c => c.willDestroyNode(element));
-  },
+  }
 });
 ```
 
@@ -213,7 +213,7 @@ Root component:
 // components/root.js
 import NodeComponent from './node.js';
 
-export default NodeComponent.extend();
+export default class extends NodeComponent {}
 ```
 
 ```hbs
