@@ -175,7 +175,7 @@ export default class extends Component {
   }
 
   willDestroy() {
-    super(...arguments);
+    super.willDestroy(...arguments);
 
     this.args.parent.unregisterChild(this);
   }
