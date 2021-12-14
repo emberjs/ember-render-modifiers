@@ -1,4 +1,19 @@
 
+## v2.0.1 (2021-12-14)
+
+#### :bug: Bug Fix
+* [#54](https://github.com/emberjs/ember-render-modifiers/pull/54) Ensure `did-update` only re-runs when arguments change (avoid recomputing when tracked properties update within callback) ([@mogstad](https://github.com/mogstad))
+
+#### :memo: Documentation
+* [#55](https://github.com/emberjs/ember-render-modifiers/pull/55) Migrate examples to use `@action` ([@bekzod](https://github.com/bekzod))
+* [#56](https://github.com/emberjs/ember-render-modifiers/pull/56) Fixes code examples in README ([@skaterdav85](https://github.com/skaterdav85))
+
+#### Committers: 3
+- Bjarne Mogstad ([@mogstad](https://github.com/mogstad))
+- David Tang ([@skaterdav85](https://github.com/skaterdav85))
+- [@bekzod](https://github.com/bekzod)
+
+
 ## v2.0.0 (2021-10-06)
 
 #### :boom: Breaking Change
