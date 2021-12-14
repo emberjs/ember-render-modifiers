@@ -1,4 +1,14 @@
 
+
+## v2.0.2 (2021-12-14)
+
+#### :house: Internal
+* [#57](https://github.com/emberjs/ember-render-modifiers/pull/57) Fully migrate to @embroider/macros ([@rwjblue](https://github.com/rwjblue))
+
+#### Committers: 1
+- Robert Jackson ([@rwjblue](https://github.com/rwjblue))
+
+
 ## v2.0.1 (2021-12-14)
 
 #### :bug: Bug Fix
