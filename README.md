@@ -49,13 +49,12 @@ Before:
 ```
 
 ```js
-export default Component.extend({
-  classNames: ['scroll-container'],
-
-  didRender() {
-    this.element.scrollTop = this.scrollPosition;
-  },
-});
+export default class extends Component {
+  @action
+  didRender(element) {
+    element.scrollTop = this.scrollPosition;
+  }
+}
 ```
 
 After:
@@ -97,8 +96,9 @@ Before:
 
 ```js
 export default class extends Component {
-  didRender() {
-    let alert = this.element.querySelector('.alert');
+  @action
+  didRender(element) {
+    let alert = element.querySelector('.alert');
 
     if (alert) {
       alert.classList.add('fade-in');
@@ -119,6 +119,7 @@ After:
 
 ```js
 export default class extends Component {
+  @action
   fadeIn(element) {
     element.classList.add('fade-in');
   }
@@ -148,6 +149,7 @@ this:
 
 ```js
 export default class extends Component {
+  @action
   resizeArea(element) {
     element.style.height = `${element.scrollHeight}px`;
   }
@@ -188,12 +190,14 @@ export default class extends Component {
     this.children.delete(child);
   }
 
+  @action
   didInsertNode(element) {
     // library setup code goes here
 
     this.children.forEach(c => c.didInsertNode(element));
   }
 
+  @action
   willDestroyNode(element) {
     // library teardown code goes here
 
@@ -218,7 +222,7 @@ export default class extends NodeComponent {}
 
 ```hbs
 <!-- components/root.hbs -->
-<div {{did-insert (action this.didInsertNode)}} {{will-destroy (action this.willDestroyNode)}}>
+<div {{did-insert this.didInsertNode}} {{will-destroy this.willDestroyNode}}>
   {{yield (component 'node' parent=this)}}
 </div>
 ```
