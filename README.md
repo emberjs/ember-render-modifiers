@@ -49,13 +49,12 @@ Before:
 ```
 
 ```js
-export default Component.extend({
-  classNames: ['scroll-container'],
-
-  didRender() {
-    this.element.scrollTop = this.scrollPosition;
-  },
-});
+export default class extends Component {
+  @action
+  didRender(element) {
+    element.scrollTop = this.scrollPosition;
+  }
+}
 ```
 
 After:
@@ -71,11 +70,11 @@ After:
 ```
 
 ```js
-export default class Component.extend({
+export default class extends Component {
   setScrollPosition(element, [scrollPosition]) {
     element.scrollTop = scrollPosition;
   }
-})
+}
 ```
 
 #### Example: Adding a class to an element after render for CSS animations
@@ -96,15 +95,16 @@ Before:
 ```
 
 ```js
-export default Component.extend({
-  didRender() {
-    let alert = this.element.querySelector('.alert');
+export default class extends Component {
+  @action
+  didRender(element) {
+    let alert = element.querySelector('.alert');
 
     if (alert) {
       alert.classList.add('fade-in');
     }
-  },
-});
+  }
+}
 ```
 
 After:
@@ -118,11 +118,12 @@ After:
 ```
 
 ```js
-export default Component.extend({
+export default class extends Component {
+  @action
   fadeIn(element) {
     element.classList.add('fade-in');
-  },
-});
+  }
+}
 ```
 
 #### Example: Resizing text area
@@ -147,11 +148,12 @@ this:
 ```
 
 ```js
-export default Component.extend({
+export default class extends Component {
+  @action
   resizeArea(element) {
     element.style.height = `${element.scrollHeight}px`;
-  },
-});
+  }
+}
 ```
 
 #### Example: `ember-composability-tools` style rendering
@@ -166,7 +168,7 @@ Node component:
 
 ```js
 // components/node.js
-export default Component.extend({
+export default class extends Component {
   init() {
     super(...arguments);
     this.children = new Set();
@@ -188,12 +190,14 @@ export default Component.extend({
     this.children.delete(child);
   }
 
+  @action
   didInsertNode(element) {
     // library setup code goes here
 
     this.children.forEach(c => c.didInsertNode(element));
   }
 
+  @action
   willDestroyNode(element) {
     // library teardown code goes here
 
@@ -213,7 +217,7 @@ Root component:
 // components/root.js
 import NodeComponent from './node.js';
 
-export default NodeComponent.extend();
+export default class extends NodeComponent;
 ```
 
 ```hbs
