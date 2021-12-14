@@ -1,5 +1,5 @@
 import { setModifierManager, capabilities } from '@ember/modifier';
-import { gte } from 'ember-compatibility-helpers';
+import { macroCondition, dependencySatisfies } from '@embroider/macros';
 
 /**
   The `{{will-destroy}}` element modifier is activated immediately before the element
@@ -41,7 +41,10 @@ import { gte } from 'ember-compatibility-helpers';
 */
 export default setModifierManager(
   () => ({
-    capabilities: capabilities(gte('3.22.0') ? '3.22' : '3.13', { disableAutoTracking: true }),
+    capabilities: capabilities(
+      macroCondition(dependencySatisfies('ember-source', '>= 3.22.0-beta.1')) ? '3.22' : '3.13',
+      { disableAutoTracking: true }
+    ),
 
     createModifier() {
       return { element: null };
