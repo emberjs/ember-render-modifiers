@@ -1834,6 +1834,32 @@
     resolve "^1.8.1"
     semver "^7.3.2"
 
+"@embroider/macros@>= 0.48.1 < 2.0.0-alpha.1":
+  version "0.48.1"
+  resolved "https://registry.yarnpkg.com/@embroider/macros/-/macros-0.48.1.tgz#fc1fd10857d40e80a20c0d366a1a8007aa424e83"
+  integrity sha512-JtcOL3pSxI8prstQomzNNHPBqG1K5JwrIuZwH+Q9TK4nONIH2F4z0Z0pd0SZmTEjF17E4gZN3g1J3vSX4zKuww==
+  dependencies:
+    "@embroider/shared-internals" "0.48.1"
+    assert-never "^1.2.1"
+    ember-cli-babel "^7.26.6"
+    find-up "^5.0.0"
+    lodash "^4.17.21"
+    resolve "^1.20.0"
+    semver "^7.3.2"
+
+"@embroider/shared-internals@0.48.1":
+  version "0.48.1"
+  resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-0.48.1.tgz#4f0dcde8dba2fa47c862746898a1846a31e27f80"
+  integrity sha512-6Q73QXGUQianIb3xRpMNl8VMECSatA1NhjXxeIyYzwKraWhhMBpXvysLpbJ8ib1rQe1ajmkoDdXgT5pAnVMXrg==
+  dependencies:
+    babel-import-util "^0.2.0"
+    ember-rfc176-data "^0.3.17"
+    fs-extra "^9.1.0"
+    lodash "^4.17.21"
+    resolve-package-path "^4.0.1"
+    semver "^7.3.5"
+    typescript-memoize "^1.0.1"
+
 "@embroider/shared-internals@^0.40.0":
   version "0.40.0"
   resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-0.40.0.tgz#2f768c60f4f35ba5f9228f046f70324851e8bfe2"
@@ -3105,7 +3131,7 @@ asn1.js@^5.2.0:
     minimalistic-assert "^1.0.0"
     safer-buffer "^2.1.0"
 
-assert-never@^1.1.0:
+assert-never@^1.1.0, assert-never@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/assert-never/-/assert-never-1.2.1.tgz#11f0e363bf146205fb08193b5c7b90f4d1cf44fe"
   integrity sha512-TaTivMB6pYI1kXwrFlEhLeGfOqoDNdTxjCdwRfFFkEA30Eu+k48W34nlok2EYWJfFFzqaEmichdNM7th6M5HNw==
@@ -3393,6 +3419,11 @@ babel-helpers@^6.24.1:
   dependencies:
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
+
+babel-import-util@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/babel-import-util/-/babel-import-util-0.2.0.tgz#b468bb679919601a3570f9e317536c54f2862e23"
+  integrity sha512-CtWYYHU/MgK88rxMrLfkD356dApswtR/kWZ/c6JifG1m10e7tBBrs/366dFzWMAoqYmG5/JSh+94tUSpIwh+ag==
 
 babel-loader@^8.0.6:
   version "8.2.2"
@@ -12802,6 +12833,13 @@ resolve-package-path@^3.1.0:
     path-root "^0.1.1"
     resolve "^1.17.0"
 
+resolve-package-path@^4.0.1:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/resolve-package-path/-/resolve-package-path-4.0.3.tgz#31dab6897236ea6613c72b83658d88898a9040aa"
+  integrity sha512-SRpNAPW4kewOaNUt8VPqhJ0UMxawMwzJD8V7m1cJfdSTK9ieZwS6K7Dabsm4bmLFM96Z5Y/UznrpG5kt1im8yA==
+  dependencies:
+    path-root "^0.1.1"
+
 resolve-path@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/resolve-path/-/resolve-path-1.4.0.tgz#c4bda9f5efb2fce65247873ab36bb4d834fe16f7"
@@ -14370,6 +14408,11 @@ typescript-memoize@^1.0.0-alpha.3:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/typescript-memoize/-/typescript-memoize-1.0.1.tgz#0a8199aa28f6fe18517f6e9308ef7bfbe9a98d59"
   integrity sha512-oJNge1qUrOK37d5Y6Ly2txKeuelYVsFtNF6U9kXIN7juudcQaHJQg2MxLOy0CqtkW65rVDYuTCOjnSIVPd8z3w==
+
+typescript-memoize@^1.0.1:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/typescript-memoize/-/typescript-memoize-1.1.0.tgz#4a8f512d06fc995167c703a3592219901db8bc79"
+  integrity sha512-LQPKVXK8QrBBkL/zclE6YgSWn0I8ew5m0Lf+XL00IwMhlotqRLlzHV+BRrljVQIc+NohUAuQP7mg4HQwrx5Xbg==
 
 uc.micro@^1.0.1, uc.micro@^1.0.5:
   version "1.0.5"

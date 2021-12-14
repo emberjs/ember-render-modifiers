@@ -169,17 +169,17 @@ Node component:
 ```js
 // components/node.js
 export default class extends Component {
-  init() {
+  constructor() {
     super(...arguments);
     this.children = new Set();
 
-    this.parent.registerChild(this);
+    this.args.parent.registerChild(this);
   }
 
   willDestroy() {
-    super(...arguments);
+    super.willDestroy(...arguments);
 
-    this.parent.unregisterChild(this);
+    this.args.parent.unregisterChild(this);
   }
 
   registerChild(child) {
@@ -203,7 +203,7 @@ export default class extends Component {
 
     this.children.forEach(c => c.willDestroyNode(element));
   }
-}
+});
 ```
 
 ```hbs
@@ -217,7 +217,7 @@ Root component:
 // components/root.js
 import NodeComponent from './node.js';
 
-export default class extends NodeComponent;
+export default class extends NodeComponent {}
 ```
 
 ```hbs
