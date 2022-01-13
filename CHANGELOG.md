@@ -1,5 +1,14 @@
 
 
+
+## v2.0.3 (2022-01-13)
+
+#### :bug: Bug Fix
+* [#58](https://github.com/emberjs/ember-render-modifiers/pull/58) dependencySatisfies only reliable with a peerDep ([@ef4](https://github.com/ef4))
+
+#### Committers: 1
+- Edward Faulkner ([@ef4](https://github.com/ef4))
+
 ## v2.0.2 (2021-12-14)
 
 #### :house: Internal
