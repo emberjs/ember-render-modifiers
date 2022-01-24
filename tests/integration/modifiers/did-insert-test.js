@@ -15,7 +15,7 @@ module('Integration | Modifier | did-insert', function (hooks) {
     assert.expect(2);
 
     this.someMethod = (element) => {
-      assert.equal(element.tagName, 'DIV', 'correct element tagName');
+      assert.strictEqual(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
     };
     await render(hbs`<div data-foo="some-thing" {{did-insert this.someMethod}}></div>`);
@@ -25,7 +25,7 @@ module('Integration | Modifier | did-insert', function (hooks) {
     assert.expect(4);
 
     this.someMethod = (element, positional, named) => {
-      assert.equal(element.tagName, 'DIV', 'correct element tagName');
+      assert.strictEqual(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
 
       assert.namedArgsEqual(named, { some: 'hash-value' }, 'named args match');
@@ -41,7 +41,7 @@ module('Integration | Modifier | did-insert', function (hooks) {
     assert.expect(4);
 
     this.someMethod = (element, positional, named) => {
-      assert.equal(element.tagName, 'DIV', 'correct element tagName');
+      assert.strictEqual(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
 
       assert.namedArgsEqual(named, {}, 'named args match');

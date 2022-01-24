@@ -13,7 +13,7 @@ module('Integration | Modifier | did-update', function (hooks) {
     assert.expect(4);
 
     this.someMethod = (element, positional, named) => {
-      assert.equal(element.tagName, 'DIV', 'correct element tagName');
+      assert.strictEqual(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
 
       assert.namedArgsEqual(named, {}, 'named args match');
@@ -43,7 +43,7 @@ module('Integration | Modifier | did-update', function (hooks) {
       this.someMethod = () => {
         // This assertion works as an assurance that we render before `secondaryValue` changes,
         // and consumes its tag to ensure reading tracked properties won't re-trigger the modifier
-        assert.equal(this.context.secondaryValue, 'initial');
+        assert.strictEqual(this.context.secondaryValue, 'initial');
       };
 
       await render(hbs`<div {{did-update this.someMethod this.context.boundValue}}></div>`);
