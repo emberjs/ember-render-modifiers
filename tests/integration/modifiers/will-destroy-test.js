@@ -10,7 +10,7 @@ module('Integration | Modifier | will-destroy', function (hooks) {
     assert.expect(2);
 
     this.someMethod = (element) => {
-      assert.equal(element.tagName, 'DIV', 'correct element tagName');
+      assert.strictEqual(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
     };
     this.set('show', true);
@@ -27,7 +27,7 @@ module('Integration | Modifier | will-destroy', function (hooks) {
     assert.expect(4);
 
     this.someMethod = (element, positional, named) => {
-      assert.equal(element.tagName, 'DIV', 'correct element tagName');
+      assert.strictEqual(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
 
       assert.namedArgsEqual(named, { some: 'hash-value' }, 'named args match');
