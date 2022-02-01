@@ -1,6 +1,19 @@
 
 
 
+
+## v2.0.4 (2022-02-01)
+
+#### :bug: Bug Fix
+* [#59](https://github.com/emberjs/ember-render-modifiers/pull/59) Update embroider to v1.0.0 ([@jrjohnson](https://github.com/jrjohnson))
+
+#### :house: Internal
+* [#60](https://github.com/emberjs/ember-render-modifiers/pull/60) ember-cli 4.1.0 ([@rwwagner90](https://github.com/rwwagner90))
+
+#### Committers: 2
+- Jon Johnson ([@jrjohnson](https://github.com/jrjohnson))
+- Robert Wagner ([@rwwagner90](https://github.com/rwwagner90))
+
 ## v2.0.3 (2022-01-13)
 
 #### :bug: Bug Fix
