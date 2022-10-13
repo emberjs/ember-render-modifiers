@@ -1,0 +1,73 @@
+{
+  "name": "@ember/render-modifiers",
+  "version": "2.0.4",
+  "description": "Implements did-insert / did-update / will-destry modifiers for emberjs/rfcs#415",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": "git@github.com:emberjs/ember-render-modifiers.git",
+  "license": "MIT",
+  "author": "Robert Jackson <me@rwjblue>",
+  "exports": {
+    ".": "./dist/index.js",
+    "./*": "./dist/*",
+    "./addon-main.js": "./addon-main.js"
+  },
+  "files": [
+    "addon-main.js",
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup --config",
+    "copyDoc": "cp ../../*.md .",
+    "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
+    "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
+    "start": "rollup --config --watch",
+    "test": "echo 'A v2 addon does not have tests, run tests in test-app'",
+    "prepare": "npm-run-all --aggregate-output --continue-on-error --parallel copyDoc build"
+  },
+  "dependencies": {
+    "@embroider/addon-shim": "^1.6.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-proposal-decorators": "^7.17.9",
+    "@embroider/addon-dev": "^1.6.0",
+    "@rollup/plugin-babel": "^5.3.1",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-ember": "^10.6.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.6.2",
+    "rollup": "^2.71.1"
+  },
+  "peerDependencies": {
+    "ember-source": "^3.8 || 4"
+  },
+  "engines": {
+    "node": "12.* || 14.* || >= 16"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "ember-addon": {
+    "main": "addon-main.js",
+    "type": "addon",
+    "version": 2,
+    "app-js": {
+      "./modifiers/did-insert.js": "./dist/_app_/modifiers/did-insert.js",
+      "./modifiers/did-update.js": "./dist/_app_/modifiers/did-update.js",
+      "./modifiers/will-destroy.js": "./dist/_app_/modifiers/will-destroy.js"
+    }
+  },
+  "volta": {
+    "extends": "../../package.json"
+  }
+}

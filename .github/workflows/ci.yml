@@ -22,14 +22,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: 12.x
-          cache: yarn
+        uses: volta-cli/action@v1
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
-      - name: Lint
+      - name: Lint Addon
         run: yarn lint
+        working-directory: packages/ember-render-modifiers
+      - name: Lint Test App
+        run: yarn lint
+        working-directory: packages/test-app
       - name: Run Tests
         run: yarn test:ember
 
@@ -39,14 +40,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 12.x
-          cache: yarn
+      - uses: volta-cli/action@v1
       - name: Install Dependencies
         run: yarn install --no-lockfile
       - name: Run Tests
-        run: yarn test:ember
+        run: yarn test
 
   try-scenarios:
     name: ${{ matrix.try-scenario }}
@@ -74,11 +72,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: 12.x
-          cache: yarn
+        uses: volta-cli/action@v1
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
       - name: Run Tests
         run: ./node_modules/.bin/ember try:one ${{ matrix.try-scenario }}
+        working-directory: packages/test-app
