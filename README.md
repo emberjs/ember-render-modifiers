@@ -26,9 +26,11 @@ most use-cases where you might want to reach for this package.
 _**For more information on why these modifiers exist and concrete examples of what the modern alternatives to using them are,
 watch the below talk from EmberFest 2022.**_
 
-<a href="https://www.youtube.com/watch?v=zwewg2xmpU8">
-  <img src="https://user-images.githubusercontent.com/416724/195643386-e4076f35-56f6-4244-aae0-0a02f936f952.png">
-</a>
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=zwewg2xmpU8">
+    <img width="460" src="https://user-images.githubusercontent.com/416724/195643386-e4076f35-56f6-4244-aae0-0a02f936f952.png">
+  </a>
+</p>
 
 ## Compatibility
 
