@@ -65,7 +65,10 @@
       "./modifiers/did-insert.js": "./dist/_app_/modifiers/did-insert.js",
       "./modifiers/did-update.js": "./dist/_app_/modifiers/did-update.js",
       "./modifiers/will-destroy.js": "./dist/_app_/modifiers/will-destroy.js"
-    }
+    },
+    "externals": [
+      "@glimmer/validator"
+    ]
   },
   "volta": {
     "extends": "../../package.json"
