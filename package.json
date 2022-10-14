@@ -25,17 +25,17 @@
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5",
-    "release-it": "^14.0.0",
-    "release-it-lerna-changelog": "^4.0.1",
-    "release-it-yarn-workspaces": "^2.0.1"
+    "release-it": "^15.0.0",
+    "@release-it-plugins/lerna-changelog": "^5.0.0",
+    "@release-it-plugins/workspaces": "^3.2.0"
   },
   "release-it": {
     "plugins": {
-      "release-it-lerna-changelog": {
+      "@release-it-plugins/lerna-changelog": {
         "infile": "CHANGELOG.md",
         "launchEditor": false
       },
-      "release-it-yarn-workspaces": {
+      "@release-it-plugins/workspaces": {
         "workspaces": ["packages/ember-render-modifiers"],
         "additionalManifests": {
           "dependencyUpdates": ["packages/test-app/package.json"],
