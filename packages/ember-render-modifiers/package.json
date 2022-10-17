@@ -50,9 +50,6 @@
   "peerDependencies": {
     "ember-source": "^3.8 || ^4.0"
   },
-  "engines": {
-    "node": "12.* || 14.* || >= 16"
-  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
