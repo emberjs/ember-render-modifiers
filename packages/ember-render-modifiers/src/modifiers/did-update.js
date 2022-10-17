@@ -1,12 +1,18 @@
 import { setModifierManager, capabilities } from '@ember/modifier';
-import { macroCondition, dependencySatisfies, importSync } from '@embroider/macros';
+import {
+  macroCondition,
+  dependencySatisfies,
+  importSync,
+} from '@embroider/macros';
 
 const untrack = (function () {
   if (macroCondition(dependencySatisfies('ember-source', '> 3.27.0-beta.1'))) {
     // ember-source@3.27 shipped "real modules" by default, so we can just use
     // importSync to get @glimmer/validator directly
     return importSync('@glimmer/validator').untrack;
-  } else if (macroCondition(dependencySatisfies('ember-source', '>= 3.22.0-alpha.1'))) {
+  } else if (
+    macroCondition(dependencySatisfies('ember-source', '>= 3.22.0-alpha.1'))
+  ) {
     // we can access `window.Ember` here because it wasn't deprecated until at least 3.27
     // eslint-disable-next-line no-undef
     return Ember.__loader.require('@glimmer/validator').untrack;
@@ -73,7 +79,9 @@ const untrack = (function () {
 */
 export default setModifierManager(
   () => ({
-    capabilities: macroCondition(dependencySatisfies('ember-source', '>= 3.22.0-alpha.1'))
+    capabilities: macroCondition(
+      dependencySatisfies('ember-source', '>= 3.22.0-alpha.1')
+    )
       ? capabilities('3.22', { disableAutoTracking: false })
       : capabilities('3.13', { disableAutoTracking: true }),
 
@@ -84,7 +92,9 @@ export default setModifierManager(
       // save element into state bucket
       state.element = element;
 
-      if (macroCondition(dependencySatisfies('ember-source', '>= 3.22.0-alpha.1'))) {
+      if (
+        macroCondition(dependencySatisfies('ember-source', '>= 3.22.0-alpha.1'))
+      ) {
         // Consume individual properties to entangle tracking.
         // https://github.com/emberjs/ember.js/issues/19277
         // https://github.com/ember-modifier/ember-modifier/pull/63#issuecomment-815908201
@@ -96,7 +106,9 @@ export default setModifierManager(
     updateModifier({ element }, args) {
       let [fn, ...positional] = args.positional;
 
-      if (macroCondition(dependencySatisfies('ember-source', '>= 3.22.0-alpha.1'))) {
+      if (
+        macroCondition(dependencySatisfies('ember-source', '>= 3.22.0-alpha.1'))
+      ) {
         // Consume individual properties to entangle tracking.
         // https://github.com/emberjs/ember.js/issues/19277
         // https://github.com/ember-modifier/ember-modifier/pull/63#issuecomment-815908201
