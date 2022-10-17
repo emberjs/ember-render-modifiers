@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install Node
-        uses: volta-cli/action@v1
+        uses: volta-cli/action@v4
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
       - name: Lint Addon
@@ -40,7 +40,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: volta-cli/action@v1
+      - uses: volta-cli/action@v4
       - name: Install Dependencies
         run: yarn install --no-lockfile
       - name: Run Tests
@@ -72,7 +72,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install Node
-        uses: volta-cli/action@v1
+        uses: volta-cli/action@v4
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
       - name: Run Tests
