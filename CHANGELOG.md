@@ -2,6 +2,15 @@
 
 
 
+
+## v2.0.5 (2023-01-11)
+
+#### :bug: Bug Fix
+* [#68](https://github.com/emberjs/ember-render-modifiers/pull/68) Widen peer range for ember-source to include all of v4 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### Committers: 1
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## v2.0.4 (2022-02-01)
 
 #### :bug: Bug Fix
