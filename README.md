@@ -237,6 +237,23 @@ Usage:
 </Root>
 ```
 
+## Glint usage
+If you are using [Glint](https://typed-ember.gitbook.io/glint/) and `environment-ember-loose`, you can add all the modifiers to your app at once by adding
+
+```ts
+import type RenderModifiersRegistry from 'ember-render-modifiers/addon/template-registry';
+```
+to your app's `types/glint.d.ts` file, and making sure your registry extends from RenderModifiersRegistry:
+
+```ts
+declare module '@glint/environment-ember-loose/registry' {
+  export default interface Registry
+    extends RenderModifiersRegistry {
+      // ...
+    }
+}
+```
+
 ## Contributing
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
