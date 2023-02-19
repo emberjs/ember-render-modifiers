@@ -241,7 +241,7 @@ Usage:
 If you are using [Glint](https://typed-ember.gitbook.io/glint/) and `environment-ember-loose`, you can add all the modifiers to your app at once by adding
 
 ```ts
-import type RenderModifiersRegistry from 'ember-render-modifiers/addon/template-registry';
+import type RenderModifiersRegistry from '@ember/render-modifiers/addon/template-registry';
 ```
 to your app's `types/glint.d.ts` file, and making sure your registry extends from RenderModifiersRegistry:
 
