@@ -13,9 +13,6 @@
     "*": {
       "*": [
         "./addon/*"
-      ],
-      "./-private/signature": [
-        "./dist/-private/signature.d.ts"
       ]
     }
   },
