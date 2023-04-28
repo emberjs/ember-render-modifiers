@@ -9,13 +9,6 @@
   "license": "MIT",
   "author": "Robert Jackson <me@rwjblue>",
   "main": "index.js",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./addon/*"
-      ]
-    }
-  },
   "directories": {
     "doc": "doc",
     "test": "tests"
