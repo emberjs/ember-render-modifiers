@@ -243,7 +243,7 @@ If you are using [Glint](https://typed-ember.gitbook.io/glint/) and `environment
 ```ts
 import type RenderModifiersRegistry from '@ember/render-modifiers/addon/template-registry';
 ```
-to your app's `types/glint.d.ts` file, and making sure your registry extends from RenderModifiersRegistry:
+to your app's e.g. `types/glint.d.ts` file, and making sure your registry extends from RenderModifiersRegistry:
 
 ```ts
 declare module '@glint/environment-ember-loose/registry' {

@@ -9,6 +9,16 @@
   "license": "MIT",
   "author": "Robert Jackson <me@rwjblue>",
   "main": "index.js",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./addon/*"
+      ],
+      "./-private/signature": [
+        "./dist/-private/signature.d.ts"
+      ]
+    }
+  },
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -30,8 +40,10 @@
   },
   "dependencies": {
     "@embroider/macros": "^1.0.0",
+    "ember-auto-import": "^2.6.0",
     "ember-cli-babel": "^7.26.11",
     "ember-cli-typescript": "^5.2.1",
+    "ember-modifier": "^3.0.0 || ^4.0.0",
     "ember-modifier-manager-polyfill": "^1.2.0"
   },
   "devDependencies": {
@@ -72,7 +84,6 @@
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
     "babel-eslint": "^10.1.0",
-    "ember-auto-import": "^2.6.0",
     "ember-cli": "~4.10.0",
     "ember-cli-dependency-checker": "^3.3.0",
     "ember-cli-htmlbars": "^6.2.0",

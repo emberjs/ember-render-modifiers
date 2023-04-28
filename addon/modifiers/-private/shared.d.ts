@@ -1,4 +1,4 @@
-import Modifier from '@ember/modifier';
+import Modifier from 'ember-modifier';
 
 interface RenderModifierSignature<Element extends HTMLElement | SVGElement, Args extends any[]> {
     Args: { Positional: [(element: Element, args: Args) => any, ...Args] };
