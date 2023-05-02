@@ -253,7 +253,7 @@ declare module '@glint/environment-ember-loose/registry' {
     }
 }
 ```
-
+ 
 ## Contributing
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
