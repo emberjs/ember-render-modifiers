@@ -39,6 +39,7 @@
     "@embroider/util": "^1.0.0",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
+    "@tsconfig/ember": "^2.0.0",
     "babel-eslint": "^10.1.0",
     "ember-auto-import": "^2.2.4",
     "ember-cli": "~4.1.0",
@@ -51,7 +52,7 @@
     "ember-page-title": "^7.0.0",
     "ember-qunit": "^5.1.5",
     "ember-resolver": "^8.0.3",
-    "ember-source": "~4.1.0",
+    "ember-source": "~4.12.0",
     "ember-source-channel-url": "^3.0.0",
     "ember-template-lint": "^3.15.0",
     "ember-try": "^2.0.0",
@@ -68,6 +69,7 @@
     "qunit-dom": "^2.0.0",
     "release-it": "^14.11.6",
     "release-it-lerna-changelog": "^3.1.0",
+    "typescript": "^5.0.4",
     "webpack": "^5.65.0"
   },
   "peerDependencies": {
@@ -98,6 +100,13 @@
     },
     "github": {
       "release": true
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "types/*"
+      ]
     }
   }
 }
