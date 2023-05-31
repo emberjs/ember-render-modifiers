@@ -1,9 +1,8 @@
-import { ModifierLike } from '@glint/template';
-import { RenderModifierSignature } from '../-private';
+import { RenderModifier } from '../-private';
 
 declare const didUpdate: abstract new <
   El extends Element,
   Args extends Array<any>
->() => InstanceType<ModifierLike<RenderModifierSignature<El, Args>>>;
+>() => RenderModifier<El, Args>;
 
 export default didUpdate;
