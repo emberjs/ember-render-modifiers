@@ -39,6 +39,7 @@
     "@embroider/util": "^1.0.0",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
+    "@glint/template": "^1.0.2",
     "babel-eslint": "^10.1.0",
     "ember-auto-import": "^2.2.4",
     "ember-cli": "~4.1.0",
@@ -71,7 +72,13 @@
     "webpack": "^5.65.0"
   },
   "peerDependencies": {
-    "ember-source": "^3.8 || ^4.0.0 || ^5.0.0"
+    "ember-source": "^3.8 || ^4.0.0 || ^5.0.0",
+    "@glint/template": "^1.0.2"
+  },
+  "peerDependenciesMeta": {
+    "@glint/template": {
+      "optional": true
+    }
   },
   "engines": {
     "node": "12.* || 14.* || >= 16"
@@ -98,6 +105,13 @@
     },
     "github": {
       "release": true
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "types/*"
+      ]
     }
   }
 }
