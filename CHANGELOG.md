@@ -3,6 +3,22 @@
 
 
 
+
+## v2.1.0 (2023-06-01)
+
+#### :rocket: Enhancement
+* [#74](https://github.com/emberjs/ember-render-modifiers/pull/74) Publish Glint-ready type definitions ([@chriskrycho](https://github.com/chriskrycho), [@vlascik](https://github.com/vlascik))
+* [#70](https://github.com/emberjs/ember-render-modifiers/pull/70) Add support for Ember v5 ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :house: Internal
+* [#72](https://github.com/emberjs/ember-render-modifiers/pull/72) Add @ember/string ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+* [#71](https://github.com/emberjs/ember-render-modifiers/pull/71) Use node 14 for CI ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+
+#### Committers: 3
+- Chris Krycho ([@chriskrycho](https://github.com/chriskrycho))
+- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 ## v2.0.5 (2023-01-11)
 
 #### :bug: Bug Fix
