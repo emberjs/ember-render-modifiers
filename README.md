@@ -237,6 +237,28 @@ Usage:
 </Root>
 ```
 
+#### Example: Template Tag Format `<template>`
+The template tag format is a powerful, new way to write components in Ember. It's a single-file format that combines the component's JavaScript and Glimmer template code. The <template> tag is used to keep a clear separation between the template language and the JavaScript around it.
+
+
+```gjs
+import Component from '@glimmer/component';
+import didInsert from '@ember/render-modifiers/modifiers/did-insert';
+
+export default class AvatarComponent extends Component {
+  @action
+  render() {
+    console.log('Avatar rendered');
+  }
+
+  <template>
+    <aside class='avatar' {{didInsert this.render}}>
+      <span>{{@name}}</span>
+    </aside>
+  </template>
+}
+```
+
 ## Glint usage
 If you are using [Glint](https://typed-ember.gitbook.io/glint/) and `environment-ember-loose`, you can add all the modifiers to your app at once by adding
 
