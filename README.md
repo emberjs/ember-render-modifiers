@@ -5,6 +5,12 @@ the rendering lifecycle.
 
 ### When to use these modifiers (and when _not_ to use them)
 
+> [!CAUTION]
+> The modifiers provided in this package are ideal for quickly migrating away from
+classic Ember components to Glimmer components, because they largely allow you to
+use the same lifecycle hook methods you've already written. We _strongly_ encourage you to
+avoid these modifiers in new code. Classic lifecycle hooks can be rewritten as custom modifiers.
+
 The modifiers provided in this package are ideal for quickly migrating away from
 classic Ember components to Glimmer components, because they largely allow you to
 use the same lifecycle hook methods you've already written while attaching them to
