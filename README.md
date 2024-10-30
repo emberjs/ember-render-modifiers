@@ -24,7 +24,7 @@ internalize functionality manipulating or generating state from a DOM element.
 Other times, you may find that a modifier is not the right fit for that logic at all,
 in which case it's worth revisiting the design to find a better pattern.
 
-> Either way, we recommend using these modifiers with caution. They are very useful for
+Either way, we recommend using these modifiers with caution. They are very useful for
 quickly bridging the gap between classic components and Glimmer components, but they
 are still generally an anti-pattern. We recommend considering a custom modifier in
 most use-cases where you might want to reach for this package.
