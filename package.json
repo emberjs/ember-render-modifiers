@@ -5,7 +5,10 @@
   "keywords": [
     "ember-addon"
   ],
-  "repository": "git@github.com:emberjs/ember-render-modifiers.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/emberjs/ember-render-modifiers.git"
+  },
   "license": "MIT",
   "author": "Robert Jackson <me@rwjblue>",
   "main": "index.js",
