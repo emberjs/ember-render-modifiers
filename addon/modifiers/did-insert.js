@@ -48,8 +48,10 @@ import { macroCondition, dependencySatisfies } from '@embroider/macros';
 export default setModifierManager(
   () => ({
     capabilities: capabilities(
-      macroCondition(dependencySatisfies('ember-source', '>= 3.22.0-beta.1')) ? '3.22' : '3.13',
-      { disableAutoTracking: true }
+      macroCondition(dependencySatisfies('ember-source', '>= 3.22.0-beta.1'))
+        ? '3.22'
+        : '3.13',
+      { disableAutoTracking: true },
     ),
 
     createModifier() {},
@@ -61,5 +63,5 @@ export default setModifierManager(
     updateModifier() {},
     destroyModifier() {},
   }),
-  class DidInsertModifier {}
+  class DidInsertModifier {},
 );

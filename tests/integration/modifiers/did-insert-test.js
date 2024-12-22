@@ -13,34 +13,34 @@ module('Integration | Modifier | did-insert', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it basically works', async function (assert) {
-    assert.expect(2);
-
     this.someMethod = (element) => {
       assert.strictEqual(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
     };
-    await render(hbs`<div data-foo="some-thing" {{did-insert this.someMethod}}></div>`);
+    await render(
+      hbs`<div data-foo="some-thing" {{did-insert this.someMethod}}></div>`,
+    );
   });
 
   test('it can accept arguments', async function (assert) {
-    assert.expect(4);
-
     this.someMethod = (element, positional, named) => {
       assert.strictEqual(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
 
       assert.namedArgsEqual(named, { some: 'hash-value' }, 'named args match');
-      assert.deepEqual(positional, ['some-positional-value'], 'positional args match');
+      assert.deepEqual(
+        positional,
+        ['some-positional-value'],
+        'positional args match',
+      );
     };
 
     await render(
-      hbs`<div data-foo="some-thing" {{did-insert this.someMethod "some-positional-value" some="hash-value"}}></div>`
+      hbs`<div data-foo="some-thing" {{did-insert this.someMethod "some-positional-value" some="hash-value"}}></div>`,
     );
   });
 
   test('it is not invoked again when arguments change', async function (assert) {
-    assert.expect(4);
-
     this.someMethod = (element, positional, named) => {
       assert.strictEqual(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
@@ -51,7 +51,7 @@ module('Integration | Modifier | did-insert', function (hooks) {
 
     this.set('firstArg', 'initial');
     await render(
-      hbs`<div data-foo="some-thing" {{did-insert this.someMethod this.firstArg}}></div>`
+      hbs`<div data-foo="some-thing" {{did-insert this.someMethod this.firstArg}}></div>`,
     );
     this.set('firstArg', 'updated');
   });
@@ -60,7 +60,7 @@ module('Integration | Modifier | did-insert', function (hooks) {
     this.owner.register(
       'component:sometimes-fades-in',
       // eslint-disable-next-line ember/no-classic-classes
-      Component.extend({})
+      Component.extend({}),
     );
 
     // eslint-disable-next-line ember/no-classic-classes

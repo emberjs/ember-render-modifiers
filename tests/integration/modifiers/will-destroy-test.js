@@ -7,8 +7,6 @@ module('Integration | Modifier | will-destroy', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it basically works', async function (assert) {
-    assert.expect(2);
-
     this.someMethod = (element) => {
       assert.strictEqual(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
@@ -16,7 +14,7 @@ module('Integration | Modifier | will-destroy', function (hooks) {
     this.set('show', true);
 
     await render(
-      hbs`{{#if this.show}}<div data-foo="some-thing" {{will-destroy this.someMethod}}></div>{{/if}}`
+      hbs`{{#if this.show}}<div data-foo="some-thing" {{will-destroy this.someMethod}}></div>{{/if}}`,
     );
 
     // trigger destroy
@@ -24,20 +22,22 @@ module('Integration | Modifier | will-destroy', function (hooks) {
   });
 
   test('it can accept arguments', async function (assert) {
-    assert.expect(4);
-
     this.someMethod = (element, positional, named) => {
       assert.strictEqual(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
 
       assert.namedArgsEqual(named, { some: 'hash-value' }, 'named args match');
-      assert.deepEqual(positional, ['some-positional-value'], 'positional args match');
+      assert.deepEqual(
+        positional,
+        ['some-positional-value'],
+        'positional args match',
+      );
     };
 
     this.set('show', true);
 
     await render(
-      hbs`{{#if this.show}}<div data-foo="some-thing" {{will-destroy this.someMethod "some-positional-value" some="hash-value"}}></div>{{/if}}`
+      hbs`{{#if this.show}}<div data-foo="some-thing" {{will-destroy this.someMethod "some-positional-value" some="hash-value"}}></div>{{/if}}`,
     );
 
     // trigger destroy
