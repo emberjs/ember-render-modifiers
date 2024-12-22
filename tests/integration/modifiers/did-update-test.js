@@ -10,8 +10,6 @@ module('Integration | Modifier | did-update', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it basically works', async function (assert) {
-    assert.expect(4);
-
     this.someMethod = (element, positional, named) => {
       assert.strictEqual(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
@@ -31,8 +29,6 @@ module('Integration | Modifier | did-update', function (hooks) {
   // only run the next test where @tracked is present
   if (macroCondition(dependencySatisfies('ember-source', '>= 3.12.0'))) {
     test('it consumes tracked properties without re-invoking', async function (assert) {
-      assert.expect(1);
-
       class Context {
         @tracked boundValue = 'initial';
         @tracked secondaryValue = 'initial';

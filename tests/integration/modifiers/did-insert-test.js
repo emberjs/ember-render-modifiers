@@ -13,8 +13,6 @@ module('Integration | Modifier | did-insert', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it basically works', async function (assert) {
-    assert.expect(2);
-
     this.someMethod = (element) => {
       assert.strictEqual(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
@@ -25,8 +23,6 @@ module('Integration | Modifier | did-insert', function (hooks) {
   });
 
   test('it can accept arguments', async function (assert) {
-    assert.expect(4);
-
     this.someMethod = (element, positional, named) => {
       assert.strictEqual(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
@@ -45,8 +41,6 @@ module('Integration | Modifier | did-insert', function (hooks) {
   });
 
   test('it is not invoked again when arguments change', async function (assert) {
-    assert.expect(4);
-
     this.someMethod = (element, positional, named) => {
       assert.strictEqual(element.tagName, 'DIV', 'correct element tagName');
       assert.dom(element).hasAttribute('data-foo', 'some-thing');
