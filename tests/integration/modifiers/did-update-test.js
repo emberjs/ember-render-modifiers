@@ -22,7 +22,7 @@ module('Integration | Modifier | did-update', function (hooks) {
 
     this.set('boundValue', 'initial');
     await render(
-      hbs`<div data-foo="some-thing" {{did-update this.someMethod this.boundValue}}></div>`
+      hbs`<div data-foo="some-thing" {{did-update this.someMethod this.boundValue}}></div>`,
     );
 
     this.set('boundValue', 'update');
@@ -46,7 +46,9 @@ module('Integration | Modifier | did-update', function (hooks) {
         assert.strictEqual(this.context.secondaryValue, 'initial');
       };
 
-      await render(hbs`<div {{did-update this.someMethod this.context.boundValue}}></div>`);
+      await render(
+        hbs`<div {{did-update this.someMethod this.context.boundValue}}></div>`,
+      );
 
       this.context.boundValue = 'update';
       await settled();
