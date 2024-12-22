@@ -31,9 +31,9 @@ most use-cases where you might want to reach for this package.
 
 ## Compatibility
 
-- Ember.js v3.20 or above
-- Ember CLI v3.20 or above
-- Node.js v12 or above
+- Ember.js v4.12 or above
+- Ember CLI v4.12 or above
+- Node.js v18 or above
 
 ## Installation
 
@@ -41,7 +41,7 @@ most use-cases where you might want to reach for this package.
 ember install @ember/render-modifiers
 ```
 
-## Usage Examples
+## Usage
 
 ### Example: Scrolling an element to a position
 
