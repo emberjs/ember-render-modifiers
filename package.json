@@ -34,8 +34,7 @@
   "dependencies": {
     "@babel/core": "^7.25.2",
     "@embroider/macros": "^1.0.0",
-    "ember-cli-babel": "^8.2.0",
-    "ember-modifier-manager-polyfill": "^1.2.0"
+    "ember-cli-babel": "^8.2.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.25.1",
