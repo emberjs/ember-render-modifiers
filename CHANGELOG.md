@@ -4,6 +4,27 @@
 
 
 
+
+## v3.0.0 (2025-03-01)
+
+#### :boom: Breaking Change
+* [#81](https://github.com/emberjs/ember-render-modifiers/pull/81) [breaking] Update to Ember CLI 5.12.0 ([@jrjohnson](https://github.com/jrjohnson))
+
+#### :rocket: Enhancement
+* [#79](https://github.com/emberjs/ember-render-modifiers/pull/79) Add Ember v6 to Peers ([@jrjohnson](https://github.com/jrjohnson))
+
+#### :memo: Documentation
+* [#67](https://github.com/emberjs/ember-render-modifiers/pull/67) Add link to video with examples of how to migrate away ([@achambers](https://github.com/achambers))
+
+#### :house: Internal
+* [#80](https://github.com/emberjs/ember-render-modifiers/pull/80) chore: make release-able by fixing `repository` in package.json ([@chriskrycho](https://github.com/chriskrycho))
+
+#### Committers: 4
+- Aaron Chambers ([@achambers](https://github.com/achambers))
+- Chris Krycho ([@chriskrycho](https://github.com/chriskrycho))
+- Jon Johnson ([@jrjohnson](https://github.com/jrjohnson))
+- Katie Gengler ([@kategengler](https://github.com/kategengler))
+
 ## v2.1.0 (2023-06-01)
 
 #### :rocket: Enhancement
