@@ -80,8 +80,7 @@
     "webpack": "^5.95.0"
   },
   "peerDependencies": {
-    "@glint/template": "^1.0.2",
-    "ember-source": ">= 4.0.0"
+    "@glint/template": "^1.0.2"
   },
   "peerDependenciesMeta": {
     "@glint/template": {
