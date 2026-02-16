@@ -1,7 +1,7 @@
 {
   "name": "@ember/render-modifiers",
   "version": "3.0.0",
-  "description": "Implements did-insert / did-update / will-destry modifiers for emberjs/rfcs#415",
+  "description": "Implements did-insert / did-update / will-destroy modifiers for Ember.js",
   "keywords": [
     "ember-addon"
   ],
@@ -11,86 +11,93 @@
   },
   "license": "MIT",
   "author": "Robert Jackson <me@rwjblue>",
-  "main": "index.js",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
+  "imports": {
+    "#src/*": "./src/*"
   },
-  "scripts": {
-    "build": "ember build --environment=production",
-    "lint": "concurrently \"pnpm:lint:*(!fix)\" --names \"lint:\"",
-    "lint:css": "stylelint \"**/*.css\"",
-    "lint:css:fix": "concurrently \"pnpm:lint:css -- --fix\"",
-    "lint:fix": "concurrently \"pnpm:lint:*:fix\" --names \"fix:\"",
-    "lint:hbs": "ember-template-lint .",
-    "lint:hbs:fix": "ember-template-lint . --fix",
-    "lint:js": "eslint . --cache",
-    "lint:js:fix": "eslint . --fix",
-    "start": "ember serve",
-    "test": "concurrently \"pnpm:lint\" \"pnpm:test:*\" --names \"lint,test:\"",
-    "test:ember": "ember test",
-    "test:ember-compatibility": "ember try:each"
-  },
-  "dependencies": {
-    "@babel/core": "^7.25.2",
-    "ember-cli-babel": "^8.2.0"
-  },
-  "devDependencies": {
-    "@babel/eslint-parser": "^7.25.1",
-    "@babel/plugin-proposal-decorators": "^7.24.7",
-    "@ember/optional-features": "^2.1.0",
-    "@ember/string": "^3.0.1",
-    "@ember/test-helpers": "^3.3.1",
-    "@embroider/test-setup": "^4.0.0",
-    "@embroider/util": "^1.0.0",
-    "@glimmer/component": "^1.1.2",
-    "@glimmer/tracking": "^1.1.2",
-    "@glint/template": "^1.0.2",
-    "concurrently": "^8.2.2",
-    "ember-auto-import": "^2.8.1",
-    "ember-cli": "~5.12.0",
-    "ember-cli-clean-css": "^3.0.0",
-    "ember-cli-dependency-checker": "^3.3.2",
-    "ember-cli-htmlbars": "^6.3.0",
-    "ember-cli-inject-live-reload": "^2.1.0",
-    "ember-cli-terser": "^4.0.2",
-    "ember-load-initializers": "^2.1.2",
-    "ember-page-title": "^8.2.3",
-    "ember-qunit": "^8.1.0",
-    "ember-resolver": "^12.0.1",
-    "ember-source": "~5.12.0",
-    "ember-source-channel-url": "^3.0.0",
-    "ember-template-lint": "^6.0.0",
-    "ember-try": "^3.0.0",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-ember": "^12.2.1",
-    "eslint-plugin-n": "^16.6.2",
-    "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-qunit": "^8.1.2",
-    "loader.js": "^4.7.0",
-    "prettier": "^3.3.3",
-    "qunit": "^2.22.0",
-    "qunit-dom": "^3.2.1",
-    "release-it": "^14.11.6",
-    "release-it-lerna-changelog": "^3.1.0",
-    "stylelint": "^15.11.0",
-    "stylelint-config-standard": "^34.0.0",
-    "stylelint-prettier": "^4.1.0",
-    "webpack": "^5.95.0"
-  },
-  "peerDependencies": {
-    "@glint/template": "^1.0.2",
-    "ember-source": ">= 4.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@glint/template": {
-      "optional": true
+  "exports": {
+    ".": {
+      "types": "./declarations/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./addon-main.js": "./addon-main.cjs",
+    "./*.css": "./dist/*.css",
+    "./*": {
+      "types": "./declarations/*.d.ts",
+      "default": "./dist/*.js"
     }
   },
-  "engines": {
-    "node": ">= 18"
+  "files": [
+    "addon-main.cjs",
+    "declarations",
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "rollup --config",
+    "format": "prettier . --cache --write",
+    "lint": "concurrently \"pnpm:lint:*(!fix)\" --names \"lint:\" --prefixColors auto",
+    "lint:fix": "concurrently \"pnpm:lint:*:fix\" --names \"fix:\" --prefixColors auto && pnpm run format",
+    "lint:format": "prettier . --cache --check",
+    "lint:hbs": "ember-template-lint . --no-error-on-unmatched-pattern",
+    "lint:hbs:fix": "ember-template-lint . --fix --no-error-on-unmatched-pattern",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
+    "lint:publish": "pnpm build && publint run --level error",
+    "lint:types": "ember-tsc --noEmit",
+    "prepack": "rollup --config",
+    "start": "vite dev",
+    "test": "vite build --mode=development --out-dir dist-tests && testem --file testem.cjs ci --port 0"
   },
+  "dependencies": {
+    "@embroider/addon-shim": "^1.10.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/eslint-parser": "^7.28.6",
+    "@babel/plugin-transform-typescript": "^7.28.6",
+    "@babel/runtime": "^7.28.6",
+    "@ember/app-tsconfig": "^2.0.0",
+    "@ember/library-tsconfig": "^2.0.0",
+    "@ember/test-helpers": "^5.4.1",
+    "@ember/test-waiters": "^4.1.1",
+    "@embroider/addon-dev": "^8.3.0",
+    "@embroider/compat": "^4.1.13",
+    "@embroider/core": "^4.4.3",
+    "@embroider/macros": "^1.19.7",
+    "@embroider/vite": "^1.5.2",
+    "@eslint/js": "^9.39.2",
+    "@glimmer/component": "^2.0.0",
+    "@glint/ember-tsc": "^1.1.1",
+    "@glint/template": "^1.7.4",
+    "@glint/tsserver-plugin": "^2.1.0",
+    "@rollup/plugin-babel": "^6.1.0",
+    "@types/qunit": "^2.19.13",
+    "babel-plugin-ember-template-compilation": "^4.0.0",
+    "concurrently": "^9.2.1",
+    "decorator-transforms": "^2.3.1",
+    "ember-page-title": "^9.0.3",
+    "ember-qunit": "^9.0.4",
+    "ember-source": "^6.11.0",
+    "ember-strict-application-resolver": "^0.1.1",
+    "ember-template-lint": "^7.9.3",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-ember": "^12.7.5",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-n": "^17.24.0",
+    "globals": "^17.3.0",
+    "prettier": "^3.8.1",
+    "prettier-plugin-ember-template-tag": "^2.1.3",
+    "publint": "^0.3.17",
+    "qunit": "^2.25.0",
+    "qunit-dom": "^3.5.0",
+    "rollup": "^4.57.1",
+    "testem": "^3.17.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.56.0",
+    "vite": "^7.3.1"
+  },
+  "packageManager": "pnpm@10.30.0+sha512.2b5753de015d480eeb88f5b5b61e0051f05b4301808a82ec8b840c9d2adf7748eb352c83f5c1593ca703ff1017295bc3fdd3119abb9686efc96b9fcb18200937",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
@@ -99,27 +106,13 @@
     "edition": "octane"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
-  },
-  "release-it": {
-    "plugins": {
-      "release-it-lerna-changelog": {
-        "infile": "CHANGELOG.md",
-        "launchEditor": true
-      }
-    },
-    "git": {
-      "tagName": "v${version}"
-    },
-    "github": {
-      "release": true
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "types/*"
-      ]
+    "version": 2,
+    "type": "addon",
+    "main": "addon-main.cjs",
+    "app-js": {
+      "./modifiers/did-insert.js": "./dist/_app_/modifiers/did-insert.js",
+      "./modifiers/did-update.js": "./dist/_app_/modifiers/did-update.js",
+      "./modifiers/will-destroy.js": "./dist/_app_/modifiers/will-destroy.js"
     }
   }
 }

@@ -1,0 +1,8 @@
+{
+  "chat.tools.terminal.autoApprove": {
+    "/^npx ember-cli@latest addon ember-render-modifiers --blueprint @ember/addon-blueprint --pnpm --typescript 2>&1$/": {
+      "approve": true,
+      "matchCommandLine": true
+    }
+  }
+}

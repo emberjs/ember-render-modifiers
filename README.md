@@ -1,21 +1,25 @@
 # @ember/render-modifiers
 
-Provides element modifiers that can be used to hook into specific portions of
-the rendering lifecycle.
+Provides element modifiers that hook into specific portions of the rendering lifecycle:
+
+- **`didInsert`** — runs a callback when an element is inserted into the DOM
+- **`didUpdate`** — runs a callback when any of its arguments change (skips initial render)
+- **`willDestroy`** — runs a callback just before an element is removed from the DOM
 
 ### When to use these modifiers (and when _not_ to use them)
 
 > [!CAUTION]
 > The modifiers provided in this package are ideal for quickly migrating away from
-classic Ember components to Glimmer components, because they largely allow you to
-use the same lifecycle hook methods you've already written. We _strongly_ encourage you to
-avoid these modifiers in new code. Classic lifecycle hooks can be rewritten as custom modifiers.
+> classic Ember components to Glimmer components, because they largely allow you to
+> use the same lifecycle hook methods you've already written. We _strongly_ encourage
+> you to avoid these modifiers in new code. Classic lifecycle hooks can be rewritten
+> as custom modifiers.
 
 The modifiers provided in this package are ideal for quickly migrating away from
 classic Ember components to Glimmer components, because they largely allow you to
 use the same lifecycle hook methods you've already written while attaching them to
 these modifiers. For example, a `didInsertElement` hook could be called by
-`{{did-insert this.didInsertElement}}` to ease your migration process.
+`{{didInsert this.didInsertElement}}` to ease your migration process.
 
 However, we strongly encourage you to take this opportunity to rethink your
 functionality rather than use these modifiers as a crutch. In many cases, classic
@@ -29,243 +33,167 @@ quickly bridging the gap between classic components and Glimmer components, but 
 are still generally an anti-pattern. We recommend considering a custom modifier in
 most use-cases where you might want to reach for this package.
 
-_**For more information on why these modifiers exist and concrete examples of what the modern alternatives to using them are,
-watch the below talk from EmberFest 2022.**_
-
-<p align="center">
-  <a href="https://www.youtube.com/watch?v=zwewg2xmpU8">
-    <img width="460" src="https://user-images.githubusercontent.com/416724/195643386-e4076f35-56f6-4244-aae0-0a02f936f952.png">
-  </a>
-</p>
+_**For more on why these modifiers exist and what the modern alternatives look like,
+watch [this talk from EmberFest 2022](https://www.youtube.com/watch?v=zwewg2xmpU8).**_
 
 ## Compatibility
 
 - Ember.js v4.12 or above
-- Ember CLI v4.12 or above
+- Embroider or ember-auto-import v2
 - Node.js v18 or above
 
 ## Installation
 
+```sh
+pnpm add @ember/render-modifiers
 ```
-ember install @ember/render-modifiers
+
+Or with npm/yarn:
+
+```sh
+npm install @ember/render-modifiers
+# or
+yarn add @ember/render-modifiers
 ```
 
 ## Usage
 
-### Example: Scrolling an element to a position
+### Strict mode (`.gjs` / `.gts`)
 
-This sets the scroll position of an element, and updates it whenever the scroll
-position changes.
+Import the modifiers directly and use them with template tag syntax:
 
-Before:
+#### `didInsert`
 
-```hbs
-{{yield}}
-```
+```gjs
+import { didInsert } from '@ember/render-modifiers';
 
-```js
-export default class extends Component {
-  @action
-  didRender(element) {
-    element.scrollTop = this.scrollPosition;
-  }
+function fadeIn(element) {
+  element.classList.add('fade-in');
 }
+
+<template>
+  <div {{didInsert fadeIn}} class="alert">
+    Hello!
+  </div>
+</template>
 ```
 
-After:
+#### `didUpdate`
 
-```hbs
-<div
-  {{did-insert this.setScrollPosition @scrollPosition}}
-  {{did-update this.setScrollPosition @scrollPosition}}
-  class='scroll-container'
->
-  {{yield}}
-</div>
-```
+```gjs
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+import { didInsert, didUpdate } from '@ember/render-modifiers';
 
-```js
-export default class extends Component {
+export default class ScrollContainer extends Component {
+  @action
   setScrollPosition(element, [scrollPosition]) {
     element.scrollTop = scrollPosition;
   }
+
+  <template>
+    <div
+      {{didInsert this.setScrollPosition @scrollPosition}}
+      {{didUpdate this.setScrollPosition @scrollPosition}}
+      class="scroll-container"
+    >
+      {{yield}}
+    </div>
+  </template>
 }
 ```
 
-#### Example: Adding a class to an element after render for CSS animations
+#### `willDestroy`
 
-This adds a CSS class to an alert element in a conditional whenever it renders
-to fade it in, which is a bit of an extra hoop. For CSS transitions to work, we
-need to append the element _without_ the class, then add the class after it has
-been appended.
+```gjs
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
+import { willDestroy } from '@ember/render-modifiers';
 
-Before:
-
-```hbs
-{{#if this.shouldShow}}
-  <div class='alert'>
-    {{yield}}
-  </div>
-{{/if}}
-```
-
-```js
-export default class extends Component {
+export default class Tooltip extends Component {
   @action
-  didRender(element) {
-    let alert = element.querySelector('.alert');
-
-    if (alert) {
-      alert.classList.add('fade-in');
-    }
+  teardown(element) {
+    // cleanup logic here
   }
+
+  <template>
+    <div {{willDestroy this.teardown}}>
+      {{yield}}
+    </div>
+  </template>
 }
 ```
 
-After:
+#### CSS fade-in animation
 
-```hbs
-{{#if this.shouldShow}}
-  <div {{did-insert this.fadeIn}} class='alert'>
-    {{yield}}
-  </div>
-{{/if}}
-```
+```gjs
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+import { didInsert } from '@ember/render-modifiers';
 
-```js
-export default class extends Component {
+export default class Alert extends Component {
   @action
   fadeIn(element) {
     element.classList.add('fade-in');
   }
+
+  <template>
+    {{#if @show}}
+      <div {{didInsert this.fadeIn}} class="alert">
+        {{yield}}
+      </div>
+    {{/if}}
+  </template>
 }
 ```
 
-#### Example: Resizing text area
+#### Auto-resizing textarea
 
-One key thing to know about `{{did-update}}` is it will not rerun whenever the
-_contents_ or _attributes_ on the element change. For instance, `{{did-update}}`
-will _not_ rerun when `@type` changes here:
+```gjs
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
+import { didUpdate } from '@ember/render-modifiers';
 
-```hbs
-<div {{did-update this.setupType}} class='{{@type}}'></div>
-```
-
-If `{{did-update}}` should rerun whenever a value changes, the value should be
-passed as a parameter to the modifier. For instance, a textarea which wants to
-resize itself to fit text whenever the text is modified could be setup like
-this:
-
-```hbs
-<textarea {{did-update this.resizeArea @text}}>
-  {{@text}}
-</textarea>
-```
-
-```js
-export default class extends Component {
+export default class AutoResizeTextarea extends Component {
   @action
-  resizeArea(element) {
+  resize(element) {
     element.style.height = `${element.scrollHeight}px`;
   }
+
+  <template>
+    <textarea {{didUpdate this.resize @text}} readonly>
+      {{@text}}
+    </textarea>
+  </template>
 }
 ```
 
-#### Example: `ember-composability-tools` style rendering
+### Loose mode (`.hbs`)
 
-This is the type of rendering done by libraries like `ember-leaflet`, which use
-components to control the _rendering_ of the library, but without any templates
-themselves. The underlying library for this is [here](https://github.com/miguelcobain/ember-composability-tools).
-This is a simplified example of how you could accomplish this with Glimmer
-components and element modifiers.
-
-Node component:
-
-```js
-// components/node.js
-export default class extends Component {
-  constructor() {
-    super(...arguments);
-    this.children = new Set();
-
-    this.args.parent.registerChild(this);
-  }
-
-  willDestroy() {
-    super.willDestroy(...arguments);
-
-    this.args.parent.unregisterChild(this);
-  }
-
-  registerChild(child) {
-    this.children.add(child);
-  }
-
-  unregisterChild(child) {
-    this.children.delete(child);
-  }
-
-  @action
-  didInsertNode(element) {
-    // library setup code goes here
-
-    this.children.forEach(c => c.didInsertNode(element));
-  }
-
-  @action
-  willDestroyNode(element) {
-    // library teardown code goes here
-
-    this.children.forEach(c => c.willDestroyNode(element));
-  }
-});
-```
+In classic loose-mode templates, the modifiers are available as `{{did-insert}}`,
+`{{did-update}}`, and `{{will-destroy}}` without any imports:
 
 ```hbs
-<!-- components/node.hbs -->
-{{yield (component 'node' parent=this)}}
-```
-
-Root component:
-
-```js
-// components/root.js
-import NodeComponent from './node.js';
-
-export default class extends NodeComponent {}
-```
-
-```hbs
-<!-- components/root.hbs -->
-<div {{did-insert this.didInsertNode}} {{will-destroy this.willDestroyNode}}>
-  {{yield (component 'node' parent=this)}}
+<div {{did-insert this.setup}} {{will-destroy this.teardown}}>
+  {{yield}}
 </div>
 ```
 
-Usage:
+### TypeScript & Glint
 
-```hbs
-<Root as |node|>
-  <node as |node|>
-    <node></node>
-  </node>
-</Root>
-```
-
-## Glint usage
-If you are using [Glint](https://typed-ember.gitbook.io/glint/) and `environment-ember-loose`, you can add all the modifiers to your app at once by adding
+Modifiers are fully typed out of the box. For loose-mode Glint support, register
+the modifiers in your app's type declarations:
 
 ```ts
+// types/glint.d.ts
 import type RenderModifiersRegistry from '@ember/render-modifiers/template-registry';
-```
-to your app's e.g. `types/glint.d.ts` file, and making sure your registry extends from RenderModifiersRegistry:
 
-```ts
 declare module '@glint/environment-ember-loose/registry' {
-  export default interface Registry
-    extends RenderModifiersRegistry {
-      // ...
-    }
+  export default interface Registry extends RenderModifiersRegistry {
+    // ...
+  }
 }
 ```
 
