@@ -58,11 +58,83 @@ yarn add @ember/render-modifiers
 
 ## Usage
 
-### Strict mode (`.gjs` / `.gts`)
+### Recommended alternatives
 
-Import the modifiers directly and use them with template tag syntax:
+In most cases, a custom modifier (or even just the component constructor) is
+a better fit than reaching for these lifecycle modifiers. Below are common
+patterns and their modern equivalents.
 
-#### `didInsert`
+#### Initialization logic → constructor
+
+If your `{{didInsert}}` callback doesn't need the DOM element, move the
+logic into the component constructor:
+
+```gjs
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+
+export default class MyComponent extends Component {
+  @tracked count = 0;
+
+  constructor(owner, args) {
+    super(owner, args);
+    this.count++;
+  }
+
+  <template>
+    <p>Rendered {{this.count}} time(s)</p>
+  </template>
+}
+```
+
+<details>
+<summary>With <code>didInsert</code></summary>
+
+```gjs
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+import { didInsert } from '@ember/render-modifiers';
+
+export default class MyComponent extends Component {
+  @tracked count = 0;
+
+  @action
+  incrementCount() {
+    this.count++;
+  }
+
+  <template>
+    <div {{didInsert this.incrementCount}}>
+      Rendered {{this.count}} time(s)
+    </div>
+  </template>
+}
+```
+
+</details>
+
+#### DOM setup on insert → custom modifier
+
+When you need element access, write a custom modifier with
+[ember-modifier](https://github.com/ember-modifier/ember-modifier):
+
+```gjs
+import { modifier } from 'ember-modifier';
+
+const fadeIn = modifier((element) => {
+  element.classList.add('fade-in');
+});
+
+<template>
+  <div {{fadeIn}} class="alert">
+    Hello!
+  </div>
+</template>
+```
+
+<details>
+<summary>With <code>didInsert</code></summary>
 
 ```gjs
 import { didInsert } from '@ember/render-modifiers';
@@ -78,7 +150,29 @@ function fadeIn(element) {
 </template>
 ```
 
-#### `didUpdate`
+</details>
+
+#### Reacting to argument changes → custom modifier
+
+A custom modifier automatically re-runs when its arguments change,
+replacing both `{{didInsert}}` and `{{didUpdate}}`:
+
+```gjs
+import { modifier } from 'ember-modifier';
+
+const scrollTo = modifier((element, [position]) => {
+  element.scrollTop = position;
+});
+
+<template>
+  <div {{scrollTo @scrollPosition}} class="scroll-container">
+    {{yield}}
+  </div>
+</template>
+```
+
+<details>
+<summary>With <code>didInsert</code> + <code>didUpdate</code></summary>
 
 ```gjs
 import { didInsert, didUpdate } from '@ember/render-modifiers';
@@ -98,7 +192,33 @@ function setScrollPosition(element, [scrollPosition]) {
 </template>
 ```
 
-#### `willDestroy`
+</details>
+
+#### Cleanup on teardown → modifier destructor
+
+Return a cleanup function from your custom modifier — it runs automatically
+when the element is removed:
+
+```gjs
+import { modifier } from 'ember-modifier';
+
+const tooltip = modifier((element) => {
+  const instance = createTooltip(element);
+
+  return () => {
+    instance.destroy();
+  };
+});
+
+<template>
+  <div {{tooltip}}>
+    Hover me
+  </div>
+</template>
+```
+
+<details>
+<summary>With <code>willDestroy</code></summary>
 
 ```gjs
 import { willDestroy } from '@ember/render-modifiers';
@@ -114,41 +234,22 @@ function teardown(element) {
 </template>
 ```
 
-#### CSS fade-in animation
+</details>
+
+---
+
+### API reference
+
+If you still need these modifiers (e.g., during migration), here is the
+full API.
+
+#### Strict mode (`.gjs` / `.gts`)
+
+Import the modifiers directly and use them with template tag syntax:
 
 ```gjs
-import { didInsert } from '@ember/render-modifiers';
-
-function fadeIn(element) {
-  element.classList.add('fade-in');
-}
-
-<template>
-  {{#if @show}}
-    <div {{didInsert fadeIn}} class="alert">
-      {{yield}}
-    </div>
-  {{/if}}
-</template>
+import { didInsert, didUpdate, willDestroy } from '@ember/render-modifiers';
 ```
-
-#### Auto-resizing textarea
-
-```gjs
-import { didUpdate } from '@ember/render-modifiers';
-
-function resize(element) {
-  element.style.height = `${element.scrollHeight}px`;
-}
-
-<template>
-  <textarea {{didUpdate resize @text}} readonly>
-    {{@text}}
-  </textarea>
-</template>
-```
-
-#### Bound callbacks with `@action`
 
 By default, the executed function will be unbound. If you need to access
 component state (`this`) in your callback, use the `@action` decorator to bind
@@ -181,7 +282,7 @@ export default class ScrollContainer extends Component {
 }
 ```
 
-### Loose mode (`.hbs`)
+#### Loose mode (`.hbs`)
 
 In classic loose-mode templates, the modifiers are available as `{{did-insert}}`,
 `{{did-update}}`, and `{{will-destroy}}` without any imports:
