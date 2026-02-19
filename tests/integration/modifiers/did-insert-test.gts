@@ -1,6 +1,7 @@
 import { module, test } from 'qunit';
+import { tracked } from '@glimmer/tracking';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, settled } from '@ember/test-helpers';
 import { didInsert } from '@ember/render-modifiers';
 
 module('Integration | Modifier | did-insert', function (hooks) {
@@ -53,7 +54,10 @@ module('Integration | Modifier | did-insert', function (hooks) {
   test('it is not invoked again when arguments change', async function (assert) {
     assert.expect(4);
 
-    const firstArg = 'initial';
+    class State {
+      @tracked firstArg = 'initial';
+    }
+    const state = new State();
 
     const someMethod = (
       element: Element,
@@ -69,8 +73,14 @@ module('Integration | Modifier | did-insert', function (hooks) {
 
     await render(
       <template>
-        <div data-foo="some-thing" {{didInsert someMethod firstArg}}></div>
+        <div
+          data-foo="some-thing"
+          {{didInsert someMethod state.firstArg}}
+        ></div>
       </template>,
     );
+
+    state.firstArg = 'update';
+    await settled();
   });
 });

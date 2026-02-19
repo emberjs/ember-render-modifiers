@@ -81,14 +81,91 @@ function fadeIn(element) {
 #### `didUpdate`
 
 ```gjs
+import { didInsert, didUpdate } from '@ember/render-modifiers';
+
+function setScrollPosition(element, [scrollPosition]) {
+  element.scrollTop = scrollPosition;
+}
+
+<template>
+  <div
+    {{didInsert setScrollPosition @scrollPosition}}
+    {{didUpdate setScrollPosition @scrollPosition}}
+    class="scroll-container"
+  >
+    {{yield}}
+  </div>
+</template>
+```
+
+#### `willDestroy`
+
+```gjs
+import { willDestroy } from '@ember/render-modifiers';
+
+function teardown(element) {
+  // cleanup logic here
+}
+
+<template>
+  <div {{willDestroy teardown}}>
+    {{yield}}
+  </div>
+</template>
+```
+
+#### CSS fade-in animation
+
+```gjs
+import { didInsert } from '@ember/render-modifiers';
+
+function fadeIn(element) {
+  element.classList.add('fade-in');
+}
+
+<template>
+  {{#if @show}}
+    <div {{didInsert fadeIn}} class="alert">
+      {{yield}}
+    </div>
+  {{/if}}
+</template>
+```
+
+#### Auto-resizing textarea
+
+```gjs
+import { didUpdate } from '@ember/render-modifiers';
+
+function resize(element) {
+  element.style.height = `${element.scrollHeight}px`;
+}
+
+<template>
+  <textarea {{didUpdate resize @text}} readonly>
+    {{@text}}
+  </textarea>
+</template>
+```
+
+#### Bound callbacks with `@action`
+
+By default, the executed function will be unbound. If you need to access
+component state (`this`) in your callback, use the `@action` decorator to bind
+the method:
+
+```gjs
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { didInsert, didUpdate } from '@ember/render-modifiers';
 
 export default class ScrollContainer extends Component {
+  @tracked scrollPosition = 0;
+
   @action
   setScrollPosition(element, [scrollPosition]) {
+    this.scrollPosition = scrollPosition;
     element.scrollTop = scrollPosition;
   }
 
@@ -100,72 +177,6 @@ export default class ScrollContainer extends Component {
     >
       {{yield}}
     </div>
-  </template>
-}
-```
-
-#### `willDestroy`
-
-```gjs
-import Component from '@glimmer/component';
-import { action } from '@ember/object';
-import { willDestroy } from '@ember/render-modifiers';
-
-export default class Tooltip extends Component {
-  @action
-  teardown(element) {
-    // cleanup logic here
-  }
-
-  <template>
-    <div {{willDestroy this.teardown}}>
-      {{yield}}
-    </div>
-  </template>
-}
-```
-
-#### CSS fade-in animation
-
-```gjs
-import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
-import { didInsert } from '@ember/render-modifiers';
-
-export default class Alert extends Component {
-  @action
-  fadeIn(element) {
-    element.classList.add('fade-in');
-  }
-
-  <template>
-    {{#if @show}}
-      <div {{didInsert this.fadeIn}} class="alert">
-        {{yield}}
-      </div>
-    {{/if}}
-  </template>
-}
-```
-
-#### Auto-resizing textarea
-
-```gjs
-import Component from '@glimmer/component';
-import { action } from '@ember/object';
-import { didUpdate } from '@ember/render-modifiers';
-
-export default class AutoResizeTextarea extends Component {
-  @action
-  resize(element) {
-    element.style.height = `${element.scrollHeight}px`;
-  }
-
-  <template>
-    <textarea {{didUpdate this.resize @text}} readonly>
-      {{@text}}
-    </textarea>
   </template>
 }
 ```

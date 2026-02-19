@@ -8,6 +8,9 @@ import type { ModifierArgs, RenderModifierType } from '../types.ts';
  * The callback receives the element as its first argument, followed by any
  * positional arguments passed to the modifier.
  *
+ * By default, the executed function will be unbound. If you would like to
+ * access the component context in your function, use the `@action` decorator.
+ *
  * @example Basic usage
  * ```gjs
  * import { didInsert } from '@ember/render-modifiers';
