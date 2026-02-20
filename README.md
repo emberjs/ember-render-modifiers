@@ -64,56 +64,6 @@ In most cases, a custom modifier (or even just the component constructor) is
 a better fit than reaching for these lifecycle modifiers. Below are common
 patterns and their modern equivalents.
 
-#### Initialization logic → constructor
-
-If your `{{didInsert}}` callback doesn't need the DOM element, move the
-logic into the component constructor:
-
-```gjs
-import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
-
-export default class MyComponent extends Component {
-  @tracked count = 0;
-
-  constructor(owner, args) {
-    super(owner, args);
-    this.count++;
-  }
-
-  <template>
-    <p>Rendered {{this.count}} time(s)</p>
-  </template>
-}
-```
-
-<details>
-<summary>With <code>didInsert</code></summary>
-
-```gjs
-import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
-import { didInsert } from '@ember/render-modifiers';
-
-export default class MyComponent extends Component {
-  @tracked count = 0;
-
-  @action
-  incrementCount() {
-    this.count++;
-  }
-
-  <template>
-    <div {{didInsert this.incrementCount}}>
-      Rendered {{this.count}} time(s)
-    </div>
-  </template>
-}
-```
-
-</details>
-
 #### DOM setup on insert → custom modifier
 
 When you need element access, write a custom modifier with
