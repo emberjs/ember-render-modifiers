@@ -126,6 +126,7 @@ export default defineConfig([
     plugins: {
       n,
     },
+    ...n.configs['flat/recommended-module'],
 
     languageOptions: {
       sourceType: 'module',
