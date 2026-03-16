@@ -108,6 +108,7 @@ export default defineConfig([
     plugins: {
       n,
     },
+    ...n.configs['flat/recommended-script'],
 
     languageOptions: {
       sourceType: 'script',
