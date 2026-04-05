@@ -1,13 +1,11 @@
 import { setModifierManager, capabilities } from '@ember/modifier';
+import { untrack } from '@glimmer/validator';
 
 import type {
   ModifierArgs,
   ModifierState,
   RenderModifierType,
 } from '../types.ts';
-
-// @ts-expect-error - @glimmer/validator is not typed
-import { untrack } from '@glimmer/validator';
 
 /**
  * The `{{didUpdate}}` modifier is activated when any of its arguments
@@ -101,7 +99,7 @@ const DidUpdateModifier = setModifierManager(
       // https://github.com/ember-modifier/ember-modifier/pull/63#issuecomment-815908201
       args.positional.forEach(() => {});
       if (args.named) Object.values(args.named);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+
       untrack(() => {
         fn(element!, positional, args.named);
       });
