@@ -1,8 +1,7 @@
 import { tracked } from '@glimmer/tracking';
 import { on } from '@ember/modifier';
 import { pageTitle } from 'ember-page-title';
-// eslint-disable-next-line ember/no-at-ember-render-modifiers
-import { didInsert, didUpdate, willDestroy } from '@ember/render-modifiers';
+import { didInsert, didUpdate, willDestroy } from '#src/index.ts';
 
 class DemoState {
   @tracked insertedElements: string[] = [];

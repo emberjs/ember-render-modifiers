@@ -2,7 +2,7 @@ import { module, test } from 'qunit';
 import { tracked } from '@glimmer/tracking';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, settled } from '@ember/test-helpers';
-import { didInsert } from '@ember/render-modifiers';
+import { didInsert } from '#src/index.ts';
 
 module('Integration | Modifier | did-insert', function (hooks) {
   setupRenderingTest(hooks);

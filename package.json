@@ -44,7 +44,6 @@
     "lint:js:fix": "eslint . --fix",
     "lint:publish": "pnpm build && publint run --level error",
     "lint:types": "ember-tsc --noEmit",
-    "prepare": "pnpm build",
     "prepack": "rollup --config",
     "start": "vite dev",
     "test": "vite build --mode=development --out-dir dist-tests && testem --file testem.cjs ci --port 0"
@@ -67,7 +66,7 @@
     "@embroider/macros": "^1.20.2",
     "@embroider/vite": "^1.7.2",
     "@eslint/js": "^9.39.4",
-    "@glimmer/component": "^2.0.0",
+    "@glimmer/component": "^2.1.1",
     "@glint/ember-tsc": "^1.5.0",
     "@glint/template": "^1.7.7",
     "@glint/tsserver-plugin": "^2.4.0",
@@ -87,16 +86,16 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-n": "^17.24.0",
     "globals": "^17.4.0",
-    "prettier": "^3.8.1",
-    "prettier-plugin-ember-template-tag": "^2.1.3",
+    "prettier": "^3.8.2",
+    "prettier-plugin-ember-template-tag": "^2.1.4",
     "publint": "^0.3.18",
     "qunit": "^2.25.0",
     "qunit-dom": "^3.5.0",
     "rollup": "^4.60.1",
-    "testem": "^3.19.1",
+    "testem": "^3.20.0",
     "typescript": "~6.0.2",
-    "typescript-eslint": "^8.58.0",
-    "vite": "^8.0.3"
+    "typescript-eslint": "^8.58.1",
+    "vite": "^8.0.8"
   },
   "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319",
   "publishConfig": {
