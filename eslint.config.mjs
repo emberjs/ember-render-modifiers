@@ -20,7 +20,11 @@ import ember from 'eslint-plugin-ember/recommended';
 import importPlugin from 'eslint-plugin-import';
 import n from 'eslint-plugin-n';
 import globals from 'globals';
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import ts from 'typescript-eslint';
+
+const configDir = dirname(fileURLToPath(import.meta.url));
 
 const esmParserOptions = {
   ecmaFeatures: { modules: true },
@@ -29,7 +33,7 @@ const esmParserOptions = {
 
 const tsParserOptions = {
   projectService: true,
-  tsconfigRootDir: import.meta.dirname,
+  tsconfigRootDir: configDir,
 };
 
 export default defineConfig([
