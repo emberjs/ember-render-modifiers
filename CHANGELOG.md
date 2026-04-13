@@ -1,5 +1,24 @@
 # Changelog
 
+## Release (2026-04-13)
+
+* @ember/render-modifiers 4.0.0 (major)
+
+#### :boom: Breaking Change
+* `@ember/render-modifiers`
+  * [#89](https://github.com/emberjs/ember-render-modifiers/pull/89) Convert to V2 Addon, add types ([@aklkv](https://github.com/aklkv))
+
+#### :house: Internal
+* `@ember/render-modifiers`
+  * [#90](https://github.com/emberjs/ember-render-modifiers/pull/90) Update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+  * [#86](https://github.com/emberjs/ember-render-modifiers/pull/86) Remove Support for Older Ember Versions ([@jrjohnson](https://github.com/jrjohnson))
+  * [#82](https://github.com/emberjs/ember-render-modifiers/pull/82) Switch to pnpm ([@jrjohnson](https://github.com/jrjohnson))
+
+#### Committers: 3
+- Alexey Kulakov ([@aklkv](https://github.com/aklkv))
+- Jon Johnson ([@jrjohnson](https://github.com/jrjohnson))
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+
 
 
 

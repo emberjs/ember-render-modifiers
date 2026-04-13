@@ -1,0 +1,22 @@
+{
+  "solution": {
+    "@ember/render-modifiers": {
+      "impact": "major",
+      "oldVersion": "3.0.0",
+      "newVersion": "4.0.0",
+      "tagName": "latest",
+      "constraints": [
+        {
+          "impact": "major",
+          "reason": "Appears in changelog section :boom: Breaking Change"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :house: Internal"
+        }
+      ],
+      "pkgJSONPath": "./package.json"
+    }
+  },
+  "description": "## Release (2026-04-13)\n\n* @ember/render-modifiers 4.0.0 (major)\n\n#### :boom: Breaking Change\n* `@ember/render-modifiers`\n  * [#89](https://github.com/emberjs/ember-render-modifiers/pull/89) Convert to V2 Addon, add types ([@aklkv](https://github.com/aklkv))\n\n#### :house: Internal\n* `@ember/render-modifiers`\n  * [#90](https://github.com/emberjs/ember-render-modifiers/pull/90) Update release-plan ([@NullVoxPopuli](https://github.com/NullVoxPopuli))\n  * [#86](https://github.com/emberjs/ember-render-modifiers/pull/86) Remove Support for Older Ember Versions ([@jrjohnson](https://github.com/jrjohnson))\n  * [#82](https://github.com/emberjs/ember-render-modifiers/pull/82) Switch to pnpm ([@jrjohnson](https://github.com/jrjohnson))\n\n#### Committers: 3\n- Alexey Kulakov ([@aklkv](https://github.com/aklkv))\n- Jon Johnson ([@jrjohnson](https://github.com/jrjohnson))\n- [@NullVoxPopuli](https://github.com/NullVoxPopuli)\n"
+}
