@@ -1,5 +1,5 @@
 import { setModifierManager, capabilities } from '@ember/modifier';
-import { untrack } from '@glimmer/validator';
+import { untrack } from '../-private/untrack.ts';
 
 import type {
   ModifierArgs,
