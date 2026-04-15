@@ -1,32 +1,5 @@
 import { setModifierManager, capabilities } from '@ember/modifier';
-import {
-  macroCondition,
-  dependencySatisfies,
-  importSync,
-} from '@embroider/macros';
-
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-const untrack: (fn: () => void) => void = (function () {
-  if (macroCondition(dependencySatisfies('ember-source', '> 3.27.0-beta.1'))) {
-    // ember-source@3.27 shipped "real modules" by default, so we can just use
-    // importSync to get @glimmer/validator directly
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
-    const module = importSync('@glimmer/validator') as any;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    return module.untrack as unknown as (fn: () => void) => void;
-  } else if (
-    macroCondition(dependencySatisfies('ember-source', '>= 3.22.0-alpha.1'))
-  ) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
-    const module = importSync('ember') as any;
-    // we can access `window.Ember` here because it wasn't deprecated until at least 3.27
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-    return module.__loader.require('@glimmer/validator').untrack;
-  } else {
-    // we do not call `untrack` when ember-source < 3.22
-    // (we don't suport ember-source < 3.22)
-  }
-})();
+import { untrack } from '@glimmer/validator';
 
 import type {
   ModifierArgs,
